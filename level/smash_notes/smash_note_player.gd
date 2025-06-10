@@ -2,8 +2,11 @@ class_name SmashNotePlayer extends Node
 ## Handles player input to smash notes on screen.
 
 
+## Reports the smash score from a note getting smashed
+signal note_smashed(score: int)
+
 ## Distance (pixels) from aim bar where notes are smashable
-@export var smash_distance := 50
+@export var smash_distance := 75
 
 ## Locates the axis crossing where notes should be smashed
 @onready var aim_bar: Sprite2D = $AimBar
@@ -38,4 +41,13 @@ func smash_note(channel: int) -> void:
 		print("way too soon!! -1 aura point!!")
 		return
 	# successfully smash that note
+	var score := calculate_score(note)
+	note_smashed.emit(score)
+	print("score: %s" % score)
 	note_factory.destroy_note(channel)
+
+
+func calculate_score(note: Sprite2D) -> int:
+	var distance: int = abs(note.global_position.y - aim_bar.global_position.y)
+	print("distance: %s" % distance)
+	return inverse_lerp(smash_distance, 0, distance) * 100 as int

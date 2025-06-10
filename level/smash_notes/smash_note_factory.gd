@@ -1,7 +1,8 @@
 class_name SmashNoteFactory extends Node
 ## Spawns and moves smash notes in sync with music 
 
-## Called when a note 
+
+## Called when a note is missed
 signal note_missed(channel: int)
 
 const NOTE_PREFAB = preload("res://level/smash_notes/smash_note.tscn")
@@ -46,7 +47,7 @@ func init_channels() -> void:
 ## Testing function to spawn random notes
 func spawn_random_note_loop() -> void:
 	while true:
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.25).timeout
 		var channel := randi_range(0, note_channels.size() - 1)
 		spawn_note(channel)
 		
