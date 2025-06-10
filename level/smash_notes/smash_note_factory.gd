@@ -10,13 +10,13 @@ const NOTE_PREFAB = preload("res://level/smash_notes/smash_note.tscn")
 @export var note_speed := 100
 ## Note spawning positions
 @export var spawnpoints: Array[Marker2D]
-## How far (in pixels) from the aim bar notes should be considered missed
-@export var miss_distance := 100
 
 ## 2D array of notes
 var note_channels: Array[Array]
 ## Global position of the aim bar
 var aim_bar_position: Vector2
+## How far (in pixels) from the aim bar notes should be considered missed
+var miss_distance: int
 
 
 func _ready() -> void:
@@ -32,8 +32,7 @@ func _process(delta: float) -> void:
 			note.global_position.y += note_speed * delta
 			# miss notes
 			if note.global_position.y > aim_bar_position.y + miss_distance:
-				note_channels[i].pop_front()
-				note.queue_free()
+				destroy_note(i)
 				note_missed.emit(i)
 
 
@@ -58,3 +57,9 @@ func spawn_note(channel: int) -> void:
 	note.global_position = spawnpoints[channel].global_position
 	note_channels[channel].append(note)
 	add_child(note)
+
+
+## Despawns the front note in the channel
+func destroy_note(channel: int) -> void:
+	var note := note_channels[channel].pop_front() as Sprite2D
+	note.queue_free()
