@@ -1,13 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw3guqit8feqh"]
+[gd_scene load_steps=4 format=3 uid="uid://bw3guqit8feqh"]
+
+[ext_resource type="Script" uid="uid://b7amlsbki0scf" path="res://level/smash_notes/smash_note_player.gd" id="2_qohg2"]
+[ext_resource type="Script" uid="uid://bi4sgncr6c20b" path="res://level/smash_notes/smash_note_factory.gd" id="3_qohg2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yy828"]
 
 [node name="Level" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="NotePlayer" type="Node" parent="."]
+script = ExtResource("2_qohg2")
+
+[node name="NoteFactory" type="Node" parent="NotePlayer" node_paths=PackedStringArray("spawnpoints")]
+script = ExtResource("3_qohg2")
+spawnpoints = [NodePath("Spawnpoints/Marker2D"), NodePath("Spawnpoints/Marker2D2"), NodePath("Spawnpoints/Marker2D3"), NodePath("Spawnpoints/Marker2D4")]
+
+[node name="Spawnpoints" type="Node2D" parent="NotePlayer/NoteFactory"]
+position = Vector2(576, 98)
+
+[node name="Marker2D" type="Marker2D" parent="NotePlayer/NoteFactory/Spawnpoints"]
+position = Vector2(-117, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="NotePlayer/NoteFactory/Spawnpoints"]
+position = Vector2(-41, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="NotePlayer/NoteFactory/Spawnpoints"]
+position = Vector2(41, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="NotePlayer/NoteFactory/Spawnpoints"]
+position = Vector2(117, 0)
+
+[node name="AimBar" type="Sprite2D" parent="NotePlayer"]
 position = Vector2(576, 519)
 scale = Vector2(374, 14.0001)
 texture = SubResource("PlaceholderTexture2D_yy828")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)

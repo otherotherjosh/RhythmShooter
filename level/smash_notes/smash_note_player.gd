@@ -1,14 +1,15 @@
 class_name SmashNotePlayer extends Node
 ## Handles player input to smash notes on screen.
 
-## locates the axis crossing where notes should be smashed
+
+## Locates the axis crossing where notes should be smashed
 @onready var aim_bar: Sprite2D = $AimBar
-## spawner and mover of notes
+## Spawner and mover of notes
 @onready var note_factory: SmashNoteFactory = $NoteFactory
 
 
 func _ready() -> void:
-	pass
+	note_factory.aim_bar_position = aim_bar.global_position
 
 
 func _process(delta: float) -> void:
@@ -17,6 +18,11 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	for i in range(4):
-		var action := "smash_%s" % (i + 1)
+		var action := "smash_%s" % i
 		if event.is_action_pressed(action):
-			print(action)
+			smash_note(i)
+
+
+## Attempts to smash a note from a channel
+func smash_note(channel: int) -> void:
+	pass

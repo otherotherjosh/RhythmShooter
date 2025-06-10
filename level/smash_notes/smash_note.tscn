@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1aohqypppu20"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yb0fd"]
+
+[node name="SmashNote" type="Sprite2D"]
+scale = Vector2(48, 22)
+texture = SubResource("PlaceholderTexture2D_yb0fd")
