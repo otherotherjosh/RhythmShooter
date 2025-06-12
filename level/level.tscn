@@ -23,8 +23,79 @@ grow_horizontal = 0
 theme_type_variation = &"HeaderLarge"
 horizontal_alignment = 2
 
-[node name="NotePlayer" type="Node" parent="."]
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="FeedbackCh0" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -74.0
+offset_right = -130.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FeedbackCh1" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -74.0
+offset_right = -30.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FeedbackCh2" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -74.0
+offset_right = 70.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FeedbackCh3" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 131.0
+offset_top = -74.0
+offset_right = 171.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NotePlayer" type="Node" parent="." node_paths=PackedStringArray("feedback_labels")]
 script = ExtResource("2_qohg2")
+feedback_labels = [NodePath("../UI/Control/FeedbackCh0"), NodePath("../UI/Control/FeedbackCh1"), NodePath("../UI/Control/FeedbackCh2"), NodePath("../UI/Control/FeedbackCh3")]
 
 [node name="NoteFactory" type="Node" parent="NotePlayer" node_paths=PackedStringArray("spawnpoints")]
 script = ExtResource("3_qohg2")
@@ -52,3 +123,4 @@ scale = Vector2(374, 14.0001)
 texture = SubResource("PlaceholderTexture2D_yy828")
 
 [connection signal="note_smashed" from="NotePlayer" to="." method="_on_note_player_note_smashed"]
+[connection signal="note_missed" from="NotePlayer/NoteFactory" to="NotePlayer" method="_on_note_factory_note_missed"]
