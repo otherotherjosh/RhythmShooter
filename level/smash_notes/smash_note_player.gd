@@ -27,10 +27,6 @@ func _ready() -> void:
 	init_feedback_end_timers()
 
 
-func _process(delta: float) -> void:
-	pass
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	for i in range(4):
 		var action := "smash_%s" % i
@@ -71,7 +67,6 @@ func smash_note(channel: int) -> void:
 ## Returns a score from 0 to 100 based on how close a note is to the aim bar
 func calculate_score(note: SmashNote) -> int:
 	var distance: int = abs(note.global_position.y - aim_bar.global_position.y)
-	print("distance: %s" % distance)
 	#return inverse_lerp(smash_distance, 0, distance) * 100 as int
 	return 1
 

@@ -17,4 +17,3 @@ func _on_note_player_note_smashed(note_score: int) -> void:
 func _set_score(value: int) -> void:
 	score = value
 	score_label.text = "%s" % score
-	

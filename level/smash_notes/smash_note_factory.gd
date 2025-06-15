@@ -71,7 +71,6 @@ func spawn_note(channel: int) -> void:
 	note.global_position = spawnpoints[channel].global_position
 	note.target_time_ms = Time.get_ticks_msec() + note_appear_duration_ms
 	note_channels[channel].append(note)
-	print(note_channels[channel])
 	add_child(note)
 
 
