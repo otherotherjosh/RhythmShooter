@@ -54,21 +54,21 @@ func smash_note(channel: int) -> void:
 	
 	var note := note_factory.note_channels[channel][0] as SmashNote
 	# cry if note is too far away
-	if Time.get_ticks_msec() < note.target_time_ms - smash_time_ms:
+	var time_ms = Time.get_ticks_msec()
+	if time_ms < note.target_time_ms - smash_time_ms:
 		print("way too soon!! -1 aura point!!")
 		return
 	# successfully smash that note
-	var score := calculate_score(note)
+	var score := calculate_score(note, time_ms)
 	note_smashed.emit(score)
 	show_feedback(channel, score)
 	note_factory.destroy_note(channel)
 
 
-## Returns a score from 0 to 100 based on how close a note is to the aim bar
-func calculate_score(note: SmashNote) -> int:
-	var distance: int = abs(note.global_position.y - aim_bar.global_position.y)
-	#return inverse_lerp(smash_distance, 0, distance) * 100 as int
-	return 1
+## Returns a score from 0 to 100 based on how close to the target time the note was smashed
+func calculate_score(note: SmashNote, time_ms: int) -> int:
+	var difference = abs(note.target_time_ms - time_ms)
+	return (inverse_lerp(smash_time_ms, 0, difference) * 100) as int
 
 
 ## Displays text to show player how they performed on a note smash
