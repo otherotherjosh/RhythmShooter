@@ -5,8 +5,8 @@ class_name SmashNotePlayer extends Node
 ## Reports the smash score from a note getting smashed
 signal note_smashed(score: int)
 
-## Distance (pixels) from aim bar where notes are smashable
-@export var smash_distance := 75
+## Time window before or after target note time where note is smashable
+@export var smash_time_ms := 100
 ## Feedback text labels for note channels
 @export var feedback_labels: Array[Label]
 ## How long feedback text should stick around for
@@ -23,7 +23,7 @@ var feedback_end_timers: Array[Timer]
 
 func _ready() -> void:
 	note_factory.aim_bar_position = aim_bar.global_position
-	note_factory.miss_distance = smash_distance
+	note_factory.miss_time_ms = smash_time_ms
 	init_feedback_end_timers()
 
 
@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			smash_note(i)
 
 
+## Create array of timers, one for each feedback label
 func init_feedback_end_timers() -> void:
 	for i in range(feedback_labels.size()):
 		var timer := Timer.new()
@@ -55,9 +56,9 @@ func smash_note(channel: int) -> void:
 	# do nothing if channel is empty
 	if !note_factory.note_channels[channel].size(): return
 	
-	var note := note_factory.note_channels[channel][0] as Sprite2D
+	var note := note_factory.note_channels[channel][0] as SmashNote
 	# cry if note is too far away
-	if note.global_position.y < aim_bar.global_position.y - smash_distance:
+	if Time.get_ticks_msec() < note.time_ms - smash_time_ms:
 		print("way too soon!! -1 aura point!!")
 		return
 	# successfully smash that note
@@ -68,10 +69,11 @@ func smash_note(channel: int) -> void:
 
 
 ## Returns a score from 0 to 100 based on how close a note is to the aim bar
-func calculate_score(note: Sprite2D) -> int:
+func calculate_score(note: SmashNote) -> int:
 	var distance: int = abs(note.global_position.y - aim_bar.global_position.y)
 	print("distance: %s" % distance)
-	return inverse_lerp(smash_distance, 0, distance) * 100 as int
+	#return inverse_lerp(smash_distance, 0, distance) * 100 as int
+	return 1
 
 
 ## Displays text to show player how they performed on a note smash

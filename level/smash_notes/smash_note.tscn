@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1aohqypppu20"]
+[gd_scene load_steps=3 format=3 uid="uid://c1aohqypppu20"]
+
+[ext_resource type="Script" uid="uid://b7wo75gw7rq6d" path="res://level/smash_notes/smash_note.gd" id="1_a4p57"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yb0fd"]
 
-[node name="SmashNote" type="Sprite2D"]
+[node name="SmashNote" type="Node2D"]
 scale = Vector2(48, 22)
+script = ExtResource("1_a4p57")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_yb0fd")

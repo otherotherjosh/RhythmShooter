@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw3guqit8feqh"]
+[gd_scene load_steps=7 format=3 uid="uid://bw3guqit8feqh"]
 
 [ext_resource type="Script" uid="uid://n43hyxmsavyb" path="res://level/level.gd" id="1_qohg2"]
 [ext_resource type="Script" uid="uid://b7amlsbki0scf" path="res://level/smash_notes/smash_note_player.gd" id="2_qohg2"]
 [ext_resource type="Script" uid="uid://bi4sgncr6c20b" path="res://level/smash_notes/smash_note_factory.gd" id="3_qohg2"]
+[ext_resource type="Script" uid="uid://m4e0hkf77vwn" path="res://addons/midi/MidiPlayer.gd" id="4_vkbyq"]
+[ext_resource type="AudioStream" uid="uid://us4aggr14syb" path="res://songs/sesh 3 rhythm bass thing v250614.ogg" id="5_ktfr2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yy828"]
 
@@ -99,8 +101,16 @@ feedback_labels = [NodePath("../UI/Control/FeedbackCh0"), NodePath("../UI/Contro
 
 [node name="NoteFactory" type="Node" parent="NotePlayer" node_paths=PackedStringArray("spawnpoints")]
 script = ExtResource("3_qohg2")
-note_speed = 250
+note_appear_duration_ms = 1000
 spawnpoints = [NodePath("Spawnpoints/Marker2D"), NodePath("Spawnpoints/Marker2D2"), NodePath("Spawnpoints/Marker2D3"), NodePath("Spawnpoints/Marker2D4")]
+
+[node name="MidiPlayer" type="Node" parent="NotePlayer/NoteFactory"]
+script = ExtResource("4_vkbyq")
+max_polyphony = 1
+file = "res://songs/sesh 3 rhythm bass thing.mid"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NotePlayer/NoteFactory"]
+stream = ExtResource("5_ktfr2")
 
 [node name="Spawnpoints" type="Node2D" parent="NotePlayer/NoteFactory"]
 position = Vector2(576, 98)
@@ -124,3 +134,4 @@ texture = SubResource("PlaceholderTexture2D_yy828")
 
 [connection signal="note_smashed" from="NotePlayer" to="." method="_on_note_player_note_smashed"]
 [connection signal="note_missed" from="NotePlayer/NoteFactory" to="NotePlayer" method="_on_note_factory_note_missed"]
+[connection signal="midi_event" from="NotePlayer/NoteFactory/MidiPlayer" to="NotePlayer/NoteFactory" method="_on_midi_player_midi_event"]
