@@ -1,5 +1,5 @@
 class_name Level extends Node2D
-## Handles top level level behavior
+## Holds information for one level (song)
 
 
 ## Player score

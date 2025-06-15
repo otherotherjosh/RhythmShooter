@@ -26,24 +26,22 @@ var miss_time_ms: int
 func _ready() -> void:
 	init_channels()
 	# wait a moment for midi player to be ready
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.2).timeout
 	midi_player.play()
 	await get_tree().create_timer(note_appear_duration_ms / 1000.0).timeout
 	audio_stream_player.play()
 
 
 func _process(delta: float) -> void:
-	# moves all notes into position based on time
 	var ticks_msec = Time.get_ticks_msec()
 	for i in range(4):
 		for note in note_channels[i]:
 			note = note as SmashNote
-# position note based on current time vs its target time
+			# position note based on current time vs its target time
 			var pos_value = inverse_lerp(
 					note.target_time_ms - note_appear_duration_ms, note.target_time_ms, ticks_msec)
 			note.global_position.y = lerpf(
 					spawnpoints[i].global_position.y, aim_bar_position.y, pos_value)
-			#note.global_position.y -= 100 * delta
 			# miss notes
 			if note.target_time_ms < ticks_msec - miss_time_ms:
 				destroy_note(i)
