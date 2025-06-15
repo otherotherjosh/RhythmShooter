@@ -38,13 +38,14 @@ func _process(delta: float) -> void:
 	for i in range(4):
 		for note in note_channels[i]:
 			note = note as SmashNote
-			var value = inverse_lerp(
-					note.time_ms - note_appear_duration_ms, note.time_ms, ticks_msec)
+# position note based on current time vs its target time
+			var pos_value = inverse_lerp(
+					note.target_time_ms - note_appear_duration_ms, note.target_time_ms, ticks_msec)
 			note.global_position.y = lerpf(
-					spawnpoints[i].global_position.y, aim_bar_position.y, value)
+					spawnpoints[i].global_position.y, aim_bar_position.y, pos_value)
 			#note.global_position.y -= 100 * delta
 			# miss notes
-			if note.time_ms < ticks_msec - miss_time_ms:
+			if note.target_time_ms < ticks_msec - miss_time_ms:
 				destroy_note(i)
 				note_missed.emit(i)
 
@@ -68,7 +69,7 @@ func spawn_random_note_loop() -> void:
 func spawn_note(channel: int) -> void:
 	var note := NOTE_PREFAB.instantiate() as SmashNote
 	note.global_position = spawnpoints[channel].global_position
-	note.time_ms = Time.get_ticks_msec() + note_appear_duration_ms
+	note.target_time_ms = Time.get_ticks_msec() + note_appear_duration_ms
 	note_channels[channel].append(note)
 	print(note_channels[channel])
 	add_child(note)

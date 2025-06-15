@@ -58,7 +58,7 @@ func smash_note(channel: int) -> void:
 	
 	var note := note_factory.note_channels[channel][0] as SmashNote
 	# cry if note is too far away
-	if Time.get_ticks_msec() < note.time_ms - smash_time_ms:
+	if Time.get_ticks_msec() < note.target_time_ms - smash_time_ms:
 		print("way too soon!! -1 aura point!!")
 		return
 	# successfully smash that note

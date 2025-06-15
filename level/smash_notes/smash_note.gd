@@ -1,3 +1,4 @@
 class_name SmashNote extends Node2D
 
-var time_ms: int
+## Time in ms since the engine started, 
+var target_time_ms: int
