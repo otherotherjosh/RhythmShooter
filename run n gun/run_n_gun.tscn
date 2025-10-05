@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjmuq5rf6wiva"]
+
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/gun.png" id="2_vev06"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/gun.gd" id="2_vkshs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlvg8"]
+size = Vector2(16, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pn06r"]
+radius = 8.04991
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
+
+[node name="RunNGun" type="Node2D"]
+texture_filter = 1
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(19, 163)
+script = ExtResource("1_xlvg8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("PlaceholderTexture2D_xlvg8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_pn06r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_pn06r")
+
+[node name="Gun" type="Node2D" parent="Player"]
+position = Vector2(-19, -163)
+script = ExtResource("2_vkshs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Gun"]
+position = Vector2(33, 164)
+texture = ExtResource("2_vev06")
+
+[node name="Marker2D" type="Marker2D" parent="Player/Gun"]
+position = Vector2(44, 163.508)
+gizmo_extents = 0.9
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 180)
+shape = SubResource("WorldBoundaryShape2D_xlvg8")
