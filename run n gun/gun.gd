@@ -7,10 +7,8 @@ enum State {
 	FIRING,
 }
 
-const SHOOT_TIMEOUT := 0.05
-
 var state: State
-var aim_position: Vector2
+var fire_direction: Vector2
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $Marker2D
@@ -22,32 +20,37 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_event_mouse_motion(event)
 	if event.is_action_pressed("shoot"):
 		shoot()
+	if event.is_action_released("shoot"):
+		stop_shooting()
 
 
 func _draw() -> void:
 	if state != State.IDLE:
-		var line_color := Color.RED if state == State.FIRING else Color.GREEN
-		draw_line(marker_2d.position, aim_position, line_color)
+		var line_color := (Color.GREEN if state == State.AIMING else
+				Color.RED if state == State.FIRING else Color.AQUA)
+		draw_line(marker_2d.position, marker_2d.position + fire_direction * 500, line_color)
 
 
 func aim_at(target: Vector2) -> void:
-	if state == State.FIRING:
-		return
-	state = State.AIMING
-	aim_position = to_local(target)
+	if state != State.FIRING:
+		state = State.AIMING
+	var aim_position := to_local(target)
+	fire_direction = marker_2d.position.direction_to(aim_position)
 	queue_redraw()
 
 
 func shoot() -> void:
-	if state == State.FIRING: 
+	if state == State.FIRING:
 		return
 	state = State.FIRING
 	queue_redraw()
-	await get_tree().create_timer(SHOOT_TIMEOUT).timeout
-	state = State.AIMING
+
+
+func stop_shooting() -> void:
+	state = State.IDLE
+	queue_redraw()
 
 
 func handle_event_mouse_motion(event: InputEventMouseMotion) -> void:
 	var event_world_pos := get_viewport().canvas_transform.affine_inverse() * event.position
 	aim_at(event_world_pos)
-	print("aiming at %s from %s" % [event.position, global_position])
