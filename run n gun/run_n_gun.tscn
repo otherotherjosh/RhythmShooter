@@ -7,8 +7,8 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlvg8"]
 size = Vector2(16, 30)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pn06r"]
-radius = 8.04991
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkshs"]
+radius = 8.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
 
@@ -26,13 +26,8 @@ position_smoothing_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = SubResource("PlaceholderTexture2D_xlvg8")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_pn06r")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 7)
-shape = SubResource("CircleShape2D_pn06r")
+shape = SubResource("CapsuleShape2D_vkshs")
 
 [node name="Gun" type="Node2D" parent="Player"]
 position = Vector2(-19, -163)
