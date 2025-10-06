@@ -14,6 +14,7 @@ var aim_position: Vector2
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $Marker2D
+@onready var camera_2d: Camera2D = $"../Camera2D"
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,4 +48,6 @@ func shoot() -> void:
 
 
 func handle_event_mouse_motion(event: InputEventMouseMotion) -> void:
-	aim_at(event.global_position)
+	var event_world_pos := get_viewport().canvas_transform.affine_inverse() * event.position
+	aim_at(event_world_pos)
+	print("aiming at %s from %s" % [event.position, global_position])
