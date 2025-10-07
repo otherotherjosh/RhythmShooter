@@ -1,14 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=11 format=3 uid="uid://bjmuq5rf6wiva"]
 
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/gun.png" id="2_vev06"]
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/gun.gd" id="2_vkshs"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/laser_beam.gdshader" id="4_6nj64"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkshs"]
+radius = 8.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlvg8"]
 size = Vector2(16, 30)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkshs"]
-radius = 8.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfxnc"]
+shader = ExtResource("4_6nj64")
+shader_parameter/random_seed = 0
+shader_parameter/width = 2.0
+shader_parameter/falloff = 10.0
+shader_parameter/waves = 50.0
+shader_parameter/wave_height = 0.03
+shader_parameter/wave_speed = 50.0
+shader_parameter/waves_2 = 90.215
+shader_parameter/wave_2_height = 0.06
+shader_parameter/wave_2_speed = 58.59
+shader_parameter/start_zone = 0.11
+shader_parameter/start_scale = 0.2
+
+[sub_resource type="Gradient" id="Gradient_vkshs"]
+colors = PackedColorArray(0.390366, 0.701128, 0.973969, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6nj64"]
+gradient = SubResource("Gradient_vkshs")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
 
@@ -22,24 +43,34 @@ script = ExtResource("1_xlvg8")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -35)
 position_smoothing_enabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = SubResource("PlaceholderTexture2D_xlvg8")
+position_smoothing_speed = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_vkshs")
 
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("PlaceholderTexture2D_xlvg8")
+
 [node name="Gun" type="Node2D" parent="Player"]
-position = Vector2(-19, -163)
+position = Vector2(5, 0)
 script = ExtResource("2_vkshs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Gun"]
-position = Vector2(33, 164)
+position = Vector2(11, -1.23978e-05)
 texture = ExtResource("2_vev06")
 
 [node name="Marker2D" type="Marker2D" parent="Player/Gun"]
-position = Vector2(44, 163.508)
+position = Vector2(22, -0.492017)
 gizmo_extents = 0.9
+
+[node name="LaserBeam" type="Sprite2D" parent="Player/Gun"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wfxnc")
+position = Vector2(22, -0.564999)
+scale = Vector2(1.07422, 41.13)
+texture = SubResource("GradientTexture1D_6nj64")
+centered = false
+offset = Vector2(0, -0.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

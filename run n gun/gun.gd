@@ -28,7 +28,6 @@ func _draw() -> void:
 	if state != State.IDLE:
 		var line_color := (Color.GREEN if state == State.AIMING else
 				Color.RED if state == State.FIRING else Color.AQUA)
-		draw_line(marker_2d.position, marker_2d.position + fire_direction * 500, line_color)
 
 
 func aim_at(target: Vector2) -> void:
@@ -37,6 +36,7 @@ func aim_at(target: Vector2) -> void:
 	var aim_position := to_local(target)
 	fire_direction = marker_2d.position.direction_to(aim_position)
 	queue_redraw()
+	look_at(target)
 
 
 func shoot() -> void:
