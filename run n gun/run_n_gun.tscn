@@ -14,15 +14,18 @@ size = Vector2(16, 30)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wfxnc"]
 shader = ExtResource("4_6nj64")
 shader_parameter/random_seed = 0
-shader_parameter/width = 2.0
-shader_parameter/falloff = 10.0
-shader_parameter/waves = 50.0
+shader_parameter/width = 3.0
+shader_parameter/falloff = 25.0
+shader_parameter/waves = 44.06
 shader_parameter/wave_height = 0.03
-shader_parameter/wave_speed = 50.0
-shader_parameter/waves_2 = 90.215
-shader_parameter/wave_2_height = 0.06
-shader_parameter/wave_2_speed = 58.59
-shader_parameter/start_zone = 0.11
+shader_parameter/wave_speed = 55.855
+shader_parameter/waves_2 = 69.005
+shader_parameter/wave_2_height = 0.03
+shader_parameter/wave_2_speed = 67.995
+shader_parameter/waves_3 = 90.835
+shader_parameter/wave_3_speed = 72.475
+shader_parameter/wave_3_height = 0.03
+shader_parameter/start_zone = 0.1
 shader_parameter/start_scale = 0.2
 
 [sub_resource type="Gradient" id="Gradient_vkshs"]
