@@ -38,3 +38,4 @@ func end_shooting() -> void:
 func apply_shader_params(step: GunLaserBeamAnimationStep) -> void:
 	shader.set_shader_parameter("width", step.width)
 	shader.set_shader_parameter("wave_height", step.wave_height)
+	shader.set_shader_parameter("start_zone", step.start_zone)
