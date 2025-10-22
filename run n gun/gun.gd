@@ -11,7 +11,6 @@ var state: State
 var fire_direction: Vector2
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var marker_2d: Marker2D = $Marker2D
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var laser_beam: GunLaserBeam = $LaserBeam
 
@@ -35,7 +34,7 @@ func aim_at(target: Vector2) -> void:
 	if state != State.FIRING:
 		state = State.AIMING
 	var aim_position := to_local(target)
-	fire_direction = marker_2d.position.direction_to(aim_position)
+	fire_direction = laser_beam.position.direction_to(aim_position)
 	look_at(target)
 
 

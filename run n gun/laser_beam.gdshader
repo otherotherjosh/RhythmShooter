@@ -15,6 +15,8 @@ uniform float wave_3_height = 0.05;
 uniform float start_zone = 0.1;
 uniform float start_scale = 0.2;
 
+uniform float length = 1;
+
 float get_scale(float uv_x) {
 	if (uv_x < start_zone) {
 		return uv_x / start_zone;
@@ -31,4 +33,7 @@ void fragment() {
 	float wave_center = 0.5 + wave_height * scale * wave_sum;
 	float distance_to_center = abs(UV.y - wave_center);
 	COLOR.a = width * scale - falloff * distance_to_center;
+	if (UV.x > length) {
+		COLOR.a = 0.0;
+	}
 }
