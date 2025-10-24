@@ -10,9 +10,11 @@ enum State {
 
 var state: State
 var shader: ShaderMaterial
+var enemy_shooting_at: Enemy
 
 @onready var frame_timer: Timer = $FrameTimer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var combat_manager: CombatManager = %CombatManager
 
 
 func _ready() -> void:
@@ -20,23 +22,27 @@ func _ready() -> void:
 	visible = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ray_cast_2d.is_colliding():
-		var collision := ray_cast_2d.get_collider()
-		if collision is Enemy:
-			aim_at_enemy(collision)
-			return
-	shader.set_shader_parameter("length", 1)
+		var collider := ray_cast_2d.get_collider()
+		aim_at_hit(collider)
+		return
+	combat_manager.enemy_aimed_at = null
+	if state == State.FIRING:
+		shader.set_shader_parameter("length", 1)
 
 
-# TODO: aim_at_hit() not enemy
-func aim_at_enemy(enemy: Enemy) -> void: 
+func aim_at_hit(collider: Object) -> void: 
+	if collider is Enemy:
+		combat_manager.enemy_aimed_at = collider
+	else:
+		combat_manager.enemy_aimed_at = null
+	if state != State.FIRING:
+		return
 	var hit := ray_cast_2d.get_collision_point()
 	var distance := global_position.distance_to(hit)
 	var distance_frac := distance / texture.get_width() as float
 	shader.set_shader_parameter("length", distance_frac)
-	# TODO: remove reference to enemy here and 
-	enemy.state = Enemy.State.HURTING if state == State.FIRING else Enemy.State.IDLE
 
 
 func start_shooting() -> void:

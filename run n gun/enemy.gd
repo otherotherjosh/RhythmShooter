@@ -9,15 +9,18 @@ enum State {
 	DYING,
 }
 
-@export var health: float = 100
+@export var health: int = 1:
+	set = _set_health
 @export var modulate_hurt: Color = Color.WHITE
 ## temporary; while dying animation does not exist
 @export var modulate_dying: Color = Color.WHITE
 
 var state: State = State.IDLE
 
+@onready var combat_manager: CombatManager = %CombatManager
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	modulate = calc_modulate()
 
 
@@ -31,14 +34,27 @@ func calc_modulate() -> Color:
 
 
 func start_taking_damage() -> void:
+	if state == State.DYING:
+		return
 	state = State.HURTING
 	# do pain animation
 
 
 func stop_taking_damage() -> void:
+	if state == State.DYING:
+		return
 	state = State.IDLE
+	health -= 1
 
 
 func die() -> void:
 	state = State.DYING
 	# do dying animation
+	await get_tree().create_timer(0.1).timeout
+	queue_free()
+
+
+func _set_health(value: int) -> void:
+	health = value
+	if health == 0:
+		die()

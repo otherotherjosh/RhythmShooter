@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=21 format=3 uid="uid://bjmuq5rf6wiva"]
 
+[ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/gun.png" id="2_vev06"]
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/gun.gd" id="2_vkshs"]
@@ -70,15 +71,19 @@ wave_height = 0.03
 start_zone = 0.08
 metadata/_custom_type_script = "uid://cxufssf4fvxi7"
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1ksd"]
 size = Vector2(17, 28)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1ksd"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
+
 [node name="RunNGun" type="Node2D"]
 texture_filter = 1
+
+[node name="CombatManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_hlyqt")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(19, 163)
@@ -119,19 +124,20 @@ wait_time = 0.05
 target_position = Vector2(256, 0)
 hit_from_inside = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 180)
-shape = SubResource("WorldBoundaryShape2D_xlvg8")
-
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(-68, 162)
 script = ExtResource("7_jsxa7")
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 texture = SubResource("PlaceholderTexture2D_o1ksd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 180)
+shape = SubResource("WorldBoundaryShape2D_xlvg8")

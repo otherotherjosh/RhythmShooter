@@ -25,9 +25,9 @@ float get_scale(float uv_x) {
 }
 
 void fragment() {
-	//COLOR = vec4(UV, 1.0, 1.0); 
+	//COLOR = vec4(UV, 1.0, 1.0);
 	float scale = get_scale(UV.x);
-	float wave_sum = sin(UV.x * waves - TIME * wave_speed) 
+	float wave_sum = sin(UV.x * waves - TIME * wave_speed)
 		+ sin(UV.x * waves_2 - TIME * wave_2_speed);
 		+ sin(UV.x * waves_3 - TIME * wave_3_speed);
 	float wave_center = 0.5 + wave_height * scale * wave_sum;
