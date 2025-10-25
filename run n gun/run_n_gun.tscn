@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=30 format=3 uid="uid://bjmuq5rf6wiva"]
 
 [ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/touch_input_manager.gd" id="1_40wwe"]
 [ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
@@ -8,9 +8,17 @@
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/gun.gd" id="2_vkshs"]
 [ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://run n gun/joystick_outer.png" id="3_xtvmq"]
 [ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/laser_beam.gdshader" id="4_6nj64"]
+[ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://run n gun/jump_button.gd" id="4_71lap"]
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/gun_laser_beam.gd" id="5_wfxnc"]
 [ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/gun_laser_beam_animation_step.gd" id="6_o1ksd"]
 [ext_resource type="Script" uid="uid://ow3a77il1gum" path="res://run n gun/enemy.gd" id="7_jsxa7"]
+
+[sub_resource type="Gradient" id="Gradient_71lap"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xw8jl"]
+gradient = SubResource("Gradient_71lap")
+width = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlvg8"]
 size = Vector2(16, 30)
@@ -106,7 +114,7 @@ script = ExtResource("1_40wwe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="TouchControls" type="Control" parent="CanvasLayer"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -116,7 +124,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Joystick" type="Control" parent="CanvasLayer/Control"]
+[node name="Joystick" type="Control" parent="CanvasLayer/TouchControls"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -127,7 +135,7 @@ offset_right = 67.0
 grow_vertical = 0
 script = ExtResource("2_2hxpw")
 
-[node name="Stick" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+[node name="Stick" type="TextureRect" parent="CanvasLayer/TouchControls/Joystick"]
 modulate = Color(1, 1, 1, 0.760784)
 layout_mode = 1
 anchors_preset = 15
@@ -143,7 +151,7 @@ pivot_offset = Vector2(7, 7)
 texture = ExtResource("3_xtvmq")
 expand_mode = 1
 
-[node name="Border" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+[node name="Border" type="TextureRect" parent="CanvasLayer/TouchControls/Joystick"]
 modulate = Color(1, 1, 1, 0.4)
 layout_mode = 1
 anchors_preset = 15
@@ -156,6 +164,32 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_xtvmq")
+
+[node name="JumpButton" type="Control" parent="CanvasLayer/TouchControls"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -42.0
+offset_right = -18.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_71lap")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TouchControls/JumpButton"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_xw8jl")
+expand_mode = 1
 
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -254,5 +288,6 @@ position = Vector2(0, 141)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_xlvg8")
 
-[connection signal="gui_input" from="CanvasLayer/Control/Joystick" to="CanvasLayer/Control/Joystick" method="_on_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/TouchControls/Joystick" to="CanvasLayer/TouchControls/Joystick" method="_on_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/TouchControls/JumpButton" to="CanvasLayer/TouchControls/JumpButton" method="_on_gui_input"]
 [connection signal="fire_direction_changed" from="Player/Gun" to="Player" method="_on_gun_fire_direction_changed"]
