@@ -12,7 +12,7 @@ var stick_position: Vector2:
 
 
 func _process(_delta: float) -> void:
-	touch_input_manager.player_move_direction = stick_position.x / (border.size.x / 2)
+	touch_input_manager.joystick_x_axis = stick_position.x / (border.size.x / 2)
 
 
 func _on_gui_input(event: InputEvent) -> void:

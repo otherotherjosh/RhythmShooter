@@ -121,10 +121,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = 11.0
 offset_top = -56.0
-offset_right = 56.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 67.0
+grow_vertical = 0
 script = ExtResource("2_2hxpw")
 
 [node name="Stick" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
@@ -255,3 +255,4 @@ position = Vector2(0, 141)
 shape = SubResource("WorldBoundaryShape2D_xlvg8")
 
 [connection signal="gui_input" from="CanvasLayer/Control/Joystick" to="CanvasLayer/Control/Joystick" method="_on_gui_input"]
+[connection signal="fire_direction_changed" from="Player/Gun" to="Player" method="_on_gun_fire_direction_changed"]

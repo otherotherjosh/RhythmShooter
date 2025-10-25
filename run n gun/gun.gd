@@ -1,6 +1,8 @@
 class_name Gun extends Node2D
 
 
+signal fire_direction_changed
+
 enum State {
 	IDLE,
 	AIMING,
@@ -8,40 +10,33 @@ enum State {
 }
 
 var state: State
-var fire_direction: Vector2
+var fire_direction: Vector2:
+	set = _set_fire_direction
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var laser_beam: GunLaserBeam = $LaserBeam
+@onready var touch_input_manager: TouchInputManager = %TouchInputManager
 @onready var combat_manager: CombatManager = %CombatManager
 
 
-func _process(delta: float) -> void:
+func _ready() -> void:
+	touch_input_manager.screen_touch_pressed.connect(handle_screen_touch_pressed)
+	touch_input_manager.screen_touch_released.connect(handle_screen_touch_released)
+
+
+func _process(_delta: float) -> void:
 	if state == State.FIRING and combat_manager.enemy_aimed_at:
 		aim_at(combat_manager.enemy_aimed_at.global_position)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		handle_event_mouse_motion(event)
-	if event.is_action_pressed("shoot"):
-		start_shooting()
-	if event.is_action_released("shoot"):
-		end_shooting()
-
-
-func _draw() -> void:
-	if state != State.IDLE:
-		var line_color := (Color.GREEN if state == State.AIMING else
-				Color.RED if state == State.FIRING else Color.AQUA)
 
 
 func aim_at(target: Vector2) -> void:
 	if state != State.FIRING:
 		state = State.AIMING
-	var aim_position := to_local(target)
-	fire_direction = laser_beam.position.direction_to(aim_position)
+	fire_direction = laser_beam.global_position.direction_to(target)
 	look_at(target)
+	if scale.x == -1:
+		rotate(PI)
 
 
 func start_shooting() -> void:
@@ -52,14 +47,25 @@ func start_shooting() -> void:
 	combat_manager.player_start_shooting()
 
 
-func end_shooting() -> void:
-	state = State.IDLE
-	laser_beam.end_shooting()
+func stop_shooting() -> void:
+	state = State.AIMING
+	laser_beam.stop_shooting()
 	combat_manager.player_stop_shooting()
 
 
-func handle_event_mouse_motion(event: InputEventMouseMotion) -> void:
+func handle_screen_touch_pressed(touch_position: Vector2) -> void:
 	if state == State.FIRING:
 		return
-	var event_world_pos := get_viewport().canvas_transform.affine_inverse() * event.position
-	aim_at(event_world_pos)
+	var world_pos := get_viewport().canvas_transform.affine_inverse() * touch_position
+	aim_at(world_pos)
+	start_shooting()
+
+
+func handle_screen_touch_released() -> void:
+	if state == State.FIRING:
+		stop_shooting()
+
+
+func _set_fire_direction(value: Vector2) -> void:
+	fire_direction = value
+	fire_direction_changed.emit()

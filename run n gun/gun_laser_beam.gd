@@ -22,23 +22,11 @@ func _ready() -> void:
 	visible = false
 
 
-func _process(_delta: float) -> void:
-	if ray_cast_2d.is_colliding():
-		var collider := ray_cast_2d.get_collider()
-		aim_at_hit(collider)
-		return
-	combat_manager.enemy_aimed_at = null
-	if state == State.FIRING:
-		shader.set_shader_parameter("length", 1)
-
-
 func aim_at_hit(collider: Object) -> void: 
 	if collider is Enemy:
 		combat_manager.enemy_aimed_at = collider
 	else:
 		combat_manager.enemy_aimed_at = null
-	if state != State.FIRING:
-		return
 	var hit := ray_cast_2d.get_collision_point()
 	var distance := global_position.distance_to(hit)
 	var distance_frac := distance / texture.get_width() as float
@@ -46,8 +34,17 @@ func aim_at_hit(collider: Object) -> void:
 
 
 func start_shooting() -> void:
+	ray_cast_2d.force_raycast_update()
+	if ray_cast_2d.is_colliding():
+		var collider := ray_cast_2d.get_collider()
+		aim_at_hit(collider)
+	else:
+		combat_manager.enemy_aimed_at = null
+		shader.set_shader_parameter("length", 1)
+	
 	state = State.FIRING
 	visible = true
+	
 	for step in animation_steps:
 		if state == State.IDLE:
 			return
@@ -56,7 +53,7 @@ func start_shooting() -> void:
 		await frame_timer.timeout
 
 
-func end_shooting() -> void:
+func stop_shooting() -> void:
 	state = State.IDLE
 	visible = false
 
