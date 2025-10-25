@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=24 format=3 uid="uid://bjmuq5rf6wiva"]
 
 [ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
@@ -75,6 +75,22 @@ metadata/_custom_type_script = "uid://cxufssf4fvxi7"
 size = Vector2(17, 28)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1ksd"]
+radius = 9.0
+height = 28.0
+
+[sub_resource type="Gradient" id="Gradient_hlyqt"]
+offsets = PackedFloat32Array(0.256506, 0.728625)
+colors = PackedColorArray(0.236915, 0.0535453, 0.231621, 1, 0.699029, 0.33709, 0.502949, 1)
+metadata/_snap_count = 19
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hlyqt"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2hxpw"]
+width = 1024
+height = 128
+color_ramp = SubResource("Gradient_hlyqt")
+noise = SubResource("FastNoiseLite_hlyqt")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlvg8"]
 
@@ -86,11 +102,11 @@ unique_name_in_owner = true
 script = ExtResource("1_hlyqt")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(19, 163)
+position = Vector2(19, 135)
 script = ExtResource("1_xlvg8")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -35)
+limit_bottom = 180
 position_smoothing_enabled = true
 position_smoothing_speed = 25.0
 
@@ -125,7 +141,7 @@ target_position = Vector2(256, 0)
 hit_from_inside = true
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(-68, 162)
+position = Vector2(70, 138)
 script = ExtResource("7_jsxa7")
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
 modulate_dying = Color(0, 0, 0, 1)
@@ -136,8 +152,44 @@ texture = SubResource("PlaceholderTexture2D_o1ksd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_o1ksd")
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="Enemy2" type="CharacterBody2D" parent="."]
+position = Vector2(119, 138)
+script = ExtResource("7_jsxa7")
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(0, 180)
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Enemy3" type="CharacterBody2D" parent="."]
+position = Vector2(186, 138)
+script = ExtResource("7_jsxa7")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Ground"]
+repeat_size = Vector2(512, 0)
+repeat_times = 999
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Parallax2D"]
+position = Vector2(0, 167.5)
+scale = Vector2(1, 0.242187)
+texture = SubResource("NoiseTexture2D_2hxpw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+position = Vector2(-2, 152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_xlvg8")
