@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://bjmuq5rf6wiva"]
 
-[ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/input_manager.gd" id="1_40wwe"]
+[ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/touch_input_manager.gd" id="1_40wwe"]
 [ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://run n gun/joystick.gd" id="2_2hxpw"]
@@ -100,7 +100,7 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [node name="RunNGun" type="Node2D"]
 texture_filter = 1
 
-[node name="InputManager" type="Node" parent="."]
+[node name="TouchInputManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_40wwe")
 

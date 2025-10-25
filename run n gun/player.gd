@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 
+@onready var touch_input_manager: TouchInputManager = %TouchInputManager
+
 
 func _process(delta: float) -> void:
 	# Add the gravity.
@@ -15,8 +17,7 @@ func _process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := touch_input_manager.player_move_direction
 	if direction:
 		velocity.x = direction * SPEED
 	else:
