@@ -1,9 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=27 format=3 uid="uid://bjmuq5rf6wiva"]
 
+[ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/input_manager.gd" id="1_40wwe"]
 [ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player.gd" id="1_xlvg8"]
+[ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://run n gun/joystick.gd" id="2_2hxpw"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/gun.png" id="2_vev06"]
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/gun.gd" id="2_vkshs"]
+[ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://run n gun/joystick_outer.png" id="3_xtvmq"]
 [ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/laser_beam.gdshader" id="4_6nj64"]
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/gun_laser_beam.gd" id="5_wfxnc"]
 [ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/gun_laser_beam_animation_step.gd" id="6_o1ksd"]
@@ -97,12 +100,69 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [node name="RunNGun" type="Node2D"]
 texture_filter = 1
 
+[node name="InputManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_40wwe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Joystick" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2hxpw")
+
+[node name="Stick" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+modulate = Color(1, 1, 1, 0.760784)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = -21.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(7, 7)
+texture = ExtResource("3_xtvmq")
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xtvmq")
+
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_hlyqt")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(19, 135)
+position = Vector2(0, 126)
 script = ExtResource("1_xlvg8")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -141,7 +201,7 @@ target_position = Vector2(256, 0)
 hit_from_inside = true
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(70, 138)
+position = Vector2(70, 127)
 script = ExtResource("7_jsxa7")
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
 modulate_dying = Color(0, 0, 0, 1)
@@ -153,7 +213,7 @@ texture = SubResource("PlaceholderTexture2D_o1ksd")
 shape = SubResource("CapsuleShape2D_o1ksd")
 
 [node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(119, 138)
+position = Vector2(119, 127)
 script = ExtResource("7_jsxa7")
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
 modulate_dying = Color(0, 0, 0, 1)
@@ -165,7 +225,7 @@ texture = SubResource("PlaceholderTexture2D_o1ksd")
 shape = SubResource("CapsuleShape2D_o1ksd")
 
 [node name="Enemy3" type="CharacterBody2D" parent="."]
-position = Vector2(186, 138)
+position = Vector2(186, 127)
 script = ExtResource("7_jsxa7")
 health = 3
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
@@ -184,12 +244,14 @@ repeat_size = Vector2(512, 0)
 repeat_times = 999
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground/Parallax2D"]
-position = Vector2(0, 167.5)
-scale = Vector2(1, 0.242187)
+position = Vector2(0, 161)
+scale = Vector2(0.5, 0.3125)
 texture = SubResource("NoiseTexture2D_2hxpw")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
-position = Vector2(-2, 152)
+position = Vector2(0, 141)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_xlvg8")
+
+[connection signal="gui_input" from="CanvasLayer/Control/Joystick" to="CanvasLayer/Control/Joystick" method="_on_gui_input"]
