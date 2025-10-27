@@ -1,4 +1,6 @@
 class_name Enemy extends CharacterBody2D
+## Shootable character with variable health, designed to be shot.
+## Is generally quite good at receiving damage upon becoming the target of a shooting
 
 
 enum State {
@@ -9,8 +11,10 @@ enum State {
 	DYING,
 }
 
+## Number of shots required to kill
 @export var health: int = 1:
 	set = _set_health
+## Color to modulate when getting hurt
 @export var modulate_hurt: Color = Color.WHITE
 ## temporary; while dying animation does not exist
 @export var modulate_dying: Color = Color.WHITE
@@ -24,6 +28,7 @@ func _process(_delta: float) -> void:
 	modulate = calc_modulate()
 
 
+## Returns the color to modulate depending on the state
 func calc_modulate() -> Color:
 	match state:
 		State.HURTING:
@@ -33,6 +38,7 @@ func calc_modulate() -> Color:
 	return Color.WHITE
 
 
+## Begins animation and process of getting damaged
 func start_taking_damage() -> void:
 	if state == State.DYING:
 		return
@@ -40,6 +46,7 @@ func start_taking_damage() -> void:
 	# do pain animation
 
 
+## Stops animation and finalizes process of getting damaged
 func stop_taking_damage() -> void:
 	if state == State.DYING:
 		return
@@ -47,6 +54,7 @@ func stop_taking_damage() -> void:
 	health -= 1
 
 
+# Die
 func die() -> void:
 	state = State.DYING
 	# do dying animation

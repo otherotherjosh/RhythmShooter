@@ -1,4 +1,5 @@
 class_name CombatManager extends Node
+## PvE event bus and management center
 
 
 signal player_started_shooting
@@ -8,6 +9,7 @@ var enemy_aimed_at: Enemy
 var player_is_shooting: bool
 
 
+# Calls event and sends damage to the enemy being aimed at
 func player_start_shooting() -> void:
 	player_is_shooting = true
 	player_started_shooting.emit()
@@ -15,6 +17,7 @@ func player_start_shooting() -> void:
 		enemy_aimed_at.start_taking_damage()
 
 
+# Calls event and finishes sending damage to the enemy being aimed at
 func player_stop_shooting() -> void:
 	player_is_shooting = false
 	player_stopped_shooting.emit()

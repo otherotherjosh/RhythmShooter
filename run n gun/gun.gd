@@ -1,6 +1,8 @@
 class_name Gun extends Node2D
+## Aims at location of a screen tap and fires a beam in its direction
 
 
+## Called when the gun rotates
 signal fire_direction_changed
 
 enum State {
@@ -24,26 +26,18 @@ var tween: Tween
 
 
 func _ready() -> void:
-	touch_input_manager.screen_touch_pressed.connect(handle_screen_touch_pressed)
-	touch_input_manager.screen_touch_released.connect(handle_screen_touch_released)
+	touch_input_manager.screen_touch_pressed.connect(_on_screen_touch_pressed)
+	touch_input_manager.screen_touch_released.connect(_on_screen_touch_released)
 	reset_tween()
 
 
 func _process(_delta: float) -> void:
+	# lock on to enemy when firing at one
 	if state == State.FIRING and combat_manager.enemy_aimed_at:
 		aim_at(combat_manager.enemy_aimed_at.global_position)
 
 
-func aim_at(target: Vector2) -> void:
-	if state != State.FIRING:
-		state = State.AIMING
-	reset_tween()
-	fire_direction = global_position.direction_to(target)
-	look_at(target)
-	if scale.x == -1:
-		rotate(PI)
-
-
+## Fires the laser beam and sends a signal through Combat Manager
 func start_shooting() -> void:
 	if state == State.FIRING:
 		return
@@ -54,6 +48,8 @@ func start_shooting() -> void:
 		idle_timer.stop()
 
 
+## Stops the laser beam and sends a signal through Combat Manager.
+## Begins idle timer
 func stop_shooting() -> void:
 	state = State.AIMING
 	laser_beam.stop_shooting()
@@ -61,6 +57,18 @@ func stop_shooting() -> void:
 	idle_timer.start()
 
 
+## Rotates to be looking at the target
+func aim_at(target: Vector2) -> void:
+	if state != State.FIRING:
+		state = State.AIMING
+	reset_tween()
+	fire_direction = global_position.direction_to(target)
+	look_at(target)
+	if scale.x == -1:
+		rotate(PI)
+
+
+## Stops tween from running and reinitializes it
 func reset_tween() -> void:
 	if tween:
 		if tween.is_running():
@@ -68,15 +76,16 @@ func reset_tween() -> void:
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 
 
-func handle_screen_touch_pressed(touch_position: Vector2) -> void:
+func _on_screen_touch_pressed(touch_position: Vector2) -> void:
 	if state == State.FIRING:
 		return
+	# convert viewport position to global position
 	var world_pos := get_viewport().canvas_transform.affine_inverse() * touch_position
 	aim_at(world_pos)
 	start_shooting()
 
 
-func handle_screen_touch_released() -> void:
+func _on_screen_touch_released() -> void:
 	if state == State.FIRING:
 		stop_shooting()
 
@@ -96,6 +105,7 @@ func _set_fire_direction(value: Vector2) -> void:
 
 
 func _set_state(value: State) -> void:
+	 # cannot go to idle when amidst firing
 	if value == State.IDLE and state == State.FIRING:
-		return # cannot idle when firing
+		return
 	state = value

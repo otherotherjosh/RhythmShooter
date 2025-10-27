@@ -1,4 +1,5 @@
-class_name GunLaserBeamAnimationStep extends Resource
+class_name GunLaserBeamAnimationFrame extends Resource
+## Laser beam shader parameters to define a frame an animation.
 
 
 @export var width: float

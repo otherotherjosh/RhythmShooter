@@ -1,4 +1,5 @@
 extends Control
+## Virtual joystick controlled via touchscreen
 
 
 var center: Vector2:

@@ -1,4 +1,5 @@
 class_name TouchInputManager extends Node
+## Touch screen input event bus and management center
 
 
 signal screen_touch_pressed(touch_position: Vector2)

@@ -1,4 +1,6 @@
 extends CharacterBody2D
+## 
+## Founded on default character body script
 
 
 const SPEED := 150.0
@@ -24,13 +26,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	process_jump()
+	process_movement_and_direction()
+	move_and_slide()
 
+
+## Checks for jump state and jumps when the circumstances are correct
+func process_jump() -> void:
 	if (is_on_floor()
 			and not jump_state.has_jumped 
 			and jump_state.time_since_pressed_msec < JUMP_COYOTE_TIME_MSEC):
 		velocity.y = JUMP_VELOCITY
 		jump_state.has_jumped = true
 
+
+## Handles movement and flips sprite when direction changes
+func process_movement_and_direction() -> void:
 	var direction := touch_input_manager.joystick_x_axis
 	if direction:
 		velocity.x = direction * SPEED
@@ -38,8 +49,6 @@ func _process(delta: float) -> void:
 			look_direction = -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
 
 
 func _set_look_direction(value: int) -> void:
