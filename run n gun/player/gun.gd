@@ -64,6 +64,7 @@ func aim_at(target: Vector2) -> void:
 	reset_tween()
 	fire_direction = global_position.direction_to(target)
 	look_at(target)
+	clamp_rotation()
 	if scale.x == -1:
 		rotate(PI)
 
@@ -74,6 +75,14 @@ func reset_tween() -> void:
 		if tween.is_running():
 			tween.stop()
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+
+
+## Keeps the rotation value between (inclusive) -PI (-180deg) and PI (180 deg)
+func clamp_rotation() -> void:
+	while rotation < -PI:
+		rotation += 2 * PI
+	while rotation > PI:
+		rotation -= 2 * PI
 
 
 func _on_screen_touch_pressed(touch_position: Vector2) -> void:
@@ -93,9 +102,7 @@ func _on_screen_touch_released() -> void:
 func _on_idle_timer_timeout() -> void:
 	reset_tween()
 	state = State.IDLE
-	if rotation > PI:
-		# prefer negative rotation rather than 180+ degrees
-		rotation -= PI * 2
+	clamp_rotation()
 	tween.tween_property(self, "rotation", 0, 1)
 
 
