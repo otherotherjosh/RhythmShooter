@@ -24,32 +24,21 @@ var state: State = State.IDLE
 @onready var combat_manager: CombatManager = %CombatManager
 
 
-func _process(_delta: float) -> void:
-	modulate = calc_modulate()
-
-
-## Returns the color to modulate depending on the state
-func calc_modulate() -> Color:
-	match state:
-		State.HURTING:
-			return modulate_hurt
-		State.DYING:
-			return modulate_dying
-	return Color.WHITE
-
-
 ## Begins animation and process of getting damaged
 func start_taking_damage() -> void:
 	if state == State.DYING:
 		return
 	state = State.HURTING
 	# do pain animation
+	modulate = modulate_hurt
 
 
 ## Stops animation and finalizes process of getting damaged
 func stop_taking_damage() -> void:
 	if state == State.DYING:
 		return
+	# set modulate back to normal
+	modulate = Color.WHITE
 	state = State.IDLE
 	health -= 1
 
@@ -58,6 +47,7 @@ func stop_taking_damage() -> void:
 func die() -> void:
 	state = State.DYING
 	# do dying animation
+	modulate = modulate_dying
 	await get_tree().create_timer(0.1).timeout
 	queue_free()
 
