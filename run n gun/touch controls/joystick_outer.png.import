@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://leh4xwbo372l"
-path="res://.godot/imported/joystick_outer.png-dfc4d5e2487d8c2f899431b4da4f919c.ctex"
+path="res://.godot/imported/joystick_outer.png-9888cea3b6b882b8244a9176ff467b98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://run n gun/joystick_outer.png"
-dest_files=["res://.godot/imported/joystick_outer.png-dfc4d5e2487d8c2f899431b4da4f919c.ctex"]
+source_file="res://run n gun/touch controls/joystick_outer.png"
+dest_files=["res://.godot/imported/joystick_outer.png-9888cea3b6b882b8244a9176ff467b98.ctex"]
 
 [params]
 
