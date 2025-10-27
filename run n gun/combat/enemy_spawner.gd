@@ -22,5 +22,5 @@ func spawn_enemy(health: int, spawnpoint: EnemySpawnpoint):
 	var enemy: Enemy = ENEMY.instantiate()
 	enemy.health = health
 	enemy.combat_manager = combat_manager
-	add_child(enemy)
 	enemy.global_position = spawnpoint.global_position
+	add_child(enemy)
