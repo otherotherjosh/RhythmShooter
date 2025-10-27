@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if state == State.FIRING:
+	if state == State.FIRING and ray_cast_2d.is_colliding():
 		check_ray_cast_collision()
 
 
@@ -35,6 +35,7 @@ func start_shooting() -> void:
 	state = State.FIRING
 	visible = true
 	play_shoot_animation()
+	check_ray_cast_collision()
 
 
 ## Make beam invisible
