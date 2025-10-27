@@ -25,9 +25,13 @@ func _ready() -> void:
 	visible = false
 
 
+func _process(delta: float) -> void:
+	if state == State.FIRING:
+		check_ray_cast_collision()
+
+
 ## Animates beam and reports colliding enemy to Combat Manager
 func start_shooting() -> void:
-	check_ray_cast_collision()
 	state = State.FIRING
 	visible = true
 	play_shoot_animation()
@@ -39,30 +43,6 @@ func stop_shooting() -> void:
 	visible = false
 
 
-## Checks for any collider intersecting the beam. Aims at any collision, otherwise reports to
-## Combat Manager that there is no enemy in shot
-func check_ray_cast_collision() -> void:
-	ray_cast_2d.force_raycast_update()
-	if ray_cast_2d.is_colliding():
-		var collider := ray_cast_2d.get_collider()
-		aim_at_ray_cast_collision(collider)
-	else:
-		combat_manager.enemy_aimed_at = null
-		shader.set_shader_parameter("length", 1)
-
-
-## Checks if beam is hitting an enemy and sets the beam length to not overshoot collision
-func aim_at_ray_cast_collision(collider: Object) -> void: 
-	if collider is Enemy:
-		combat_manager.enemy_aimed_at = collider
-	else:
-		combat_manager.enemy_aimed_at = null
-	var hit := ray_cast_2d.get_collision_point()
-	var distance := global_position.distance_to(hit)
-	var distance_frac := distance / texture.get_width() as float
-	shader.set_shader_parameter("length", distance_frac)
-
-
 ## Iterates over animation frames, but will be interrupted if shooting stops
 func play_shoot_animation() -> void:
 	for frame in animation_frames:
@@ -71,6 +51,35 @@ func play_shoot_animation() -> void:
 		apply_shader_params(frame)
 		frame_timer.start()
 		await frame_timer.timeout
+
+
+## Checks for any collider intersecting the beam. Aims at any collision, otherwise reports to
+## Combat Manager that there is no enemy in shot
+func check_ray_cast_collision() -> void:
+	ray_cast_2d.force_raycast_update()
+	if ray_cast_2d.is_colliding():
+		var collider := ray_cast_2d.get_collider()
+		aim_at_ray_cast_collision(collider)
+		beam_length_to_collision()
+	else:
+		combat_manager.enemy_aimed_at = null
+		shader.set_shader_parameter("length", 1)
+
+
+## Checks if collider beam is hitting belongs to an enemy
+func aim_at_ray_cast_collision(collider: Object) -> void: 
+	if collider is Enemy:
+		combat_manager.enemy_aimed_at = collider
+	else:
+		combat_manager.enemy_aimed_at = null
+
+
+## Sets the beam length to not overshoot collision
+func beam_length_to_collision() -> void:
+	var hit := ray_cast_2d.get_collision_point()
+	var distance := global_position.distance_to(hit)
+	var distance_frac := distance / texture.get_width() as float
+	shader.set_shader_parameter("length", distance_frac)
 
 
 ## Takes the parameter values defined in an animation frame and sets them on the shader

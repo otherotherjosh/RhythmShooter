@@ -221,6 +221,58 @@ texture = SubResource("PlaceholderTexture2D_o1ksd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_o1ksd")
 
+[node name="Enemy2" type="CharacterBody2D" parent="."]
+position = Vector2(224, 127)
+script = ExtResource("7_jsxa7")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Enemy3" type="CharacterBody2D" parent="."]
+position = Vector2(325, 127)
+script = ExtResource("7_jsxa7")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Enemy4" type="CharacterBody2D" parent="."]
+position = Vector2(431, 127)
+script = ExtResource("7_jsxa7")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
+[node name="Enemy5" type="CharacterBody2D" parent="."]
+position = Vector2(529, 127)
+script = ExtResource("7_jsxa7")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
+shape = SubResource("CapsuleShape2D_o1ksd")
+
 [node name="Ground" type="Node2D" parent="."]
 
 [node name="Parallax2D" type="Parallax2D" parent="Ground"]
