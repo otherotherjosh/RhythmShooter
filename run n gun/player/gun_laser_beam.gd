@@ -25,7 +25,7 @@ func _ready() -> void:
 	visible = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if state == State.FIRING and ray_cast_2d.is_colliding():
 		check_ray_cast_collision()
 
@@ -46,10 +46,10 @@ func stop_shooting() -> void:
 
 ## Iterates over animation frames, but will be interrupted if shooting stops
 func play_shoot_animation() -> void:
-	for frame in animation_frames:
+	for animation_frame in animation_frames:
 		if state == State.IDLE:
 			return
-		apply_shader_params(frame)
+		apply_shader_params(animation_frame)
 		frame_timer.start()
 		await frame_timer.timeout
 
@@ -84,7 +84,7 @@ func beam_length_to_collision() -> void:
 
 
 ## Takes the parameter values defined in an animation frame and sets them on the shader
-func apply_shader_params(frame: GunLaserBeamAnimationFrame) -> void:
-	shader.set_shader_parameter("width", frame.width)
-	shader.set_shader_parameter("wave_height", frame.wave_height)
-	shader.set_shader_parameter("start_zone", frame.start_zone)
+func apply_shader_params(animation_frame: GunLaserBeamAnimationFrame) -> void:
+	shader.set_shader_parameter("width", animation_frame.width)
+	shader.set_shader_parameter("wave_height", animation_frame.wave_height)
+	shader.set_shader_parameter("start_zone", animation_frame.start_zone)
