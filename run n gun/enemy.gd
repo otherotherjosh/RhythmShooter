@@ -24,6 +24,10 @@ var state: State = State.IDLE
 @onready var combat_manager: CombatManager = %CombatManager
 
 
+func _physics_process(delta: float) -> void:
+	move_and_slide()
+
+
 ## Begins animation and process of getting damaged
 func start_taking_damage() -> void:
 	if state == State.DYING:

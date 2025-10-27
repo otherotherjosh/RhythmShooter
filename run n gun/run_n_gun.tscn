@@ -202,6 +202,7 @@ wait_time = 0.05
 
 [node name="RayCast2D" type="RayCast2D" parent="Player/Gun/LaserBeam"]
 target_position = Vector2(256, 0)
+collision_mask = 3
 hit_from_inside = true
 
 [node name="IdleTimer" type="Timer" parent="Player/Gun"]
@@ -210,6 +211,7 @@ one_shot = true
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(151, 127)
+collision_layer = 2
 script = ExtResource("7_jsxa7")
 health = 3
 modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
@@ -219,58 +221,6 @@ modulate_dying = Color(0, 0, 0, 1)
 texture = SubResource("PlaceholderTexture2D_o1ksd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CapsuleShape2D_o1ksd")
-
-[node name="Enemy2" type="CharacterBody2D" parent="."]
-position = Vector2(224, 127)
-script = ExtResource("7_jsxa7")
-health = 3
-modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
-modulate_dying = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
-texture = SubResource("PlaceholderTexture2D_o1ksd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
-shape = SubResource("CapsuleShape2D_o1ksd")
-
-[node name="Enemy3" type="CharacterBody2D" parent="."]
-position = Vector2(325, 127)
-script = ExtResource("7_jsxa7")
-health = 3
-modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
-modulate_dying = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy3"]
-texture = SubResource("PlaceholderTexture2D_o1ksd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
-shape = SubResource("CapsuleShape2D_o1ksd")
-
-[node name="Enemy4" type="CharacterBody2D" parent="."]
-position = Vector2(431, 127)
-script = ExtResource("7_jsxa7")
-health = 3
-modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
-modulate_dying = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy4"]
-texture = SubResource("PlaceholderTexture2D_o1ksd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
-shape = SubResource("CapsuleShape2D_o1ksd")
-
-[node name="Enemy5" type="CharacterBody2D" parent="."]
-position = Vector2(529, 127)
-script = ExtResource("7_jsxa7")
-health = 3
-modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
-modulate_dying = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy5"]
-texture = SubResource("PlaceholderTexture2D_o1ksd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
 shape = SubResource("CapsuleShape2D_o1ksd")
 
 [node name="Ground" type="Node2D" parent="."]
