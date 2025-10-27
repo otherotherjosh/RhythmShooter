@@ -7,6 +7,7 @@ signal player_stopped_shooting
 
 var enemy_aimed_at: Enemy
 var player_is_shooting: bool
+var player: Player
 
 
 # Calls event and sends damage to the enemy being aimed at

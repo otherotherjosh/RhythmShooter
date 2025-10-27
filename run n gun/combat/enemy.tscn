@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5hyu6hvupa47"]
+
+[ext_resource type="Script" uid="uid://ow3a77il1gum" path="res://run n gun/combat/enemy.gd" id="1_nk52e"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1ksd"]
+size = Vector2(17, 28)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1ksd"]
+radius = 9.0
+height = 28.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_nk52e")
+health = 3
+modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
+modulate_dying = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_o1ksd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_o1ksd")

@@ -11,6 +11,8 @@ enum State {
 	DYING,
 }
 
+const SPEED := 100
+
 ## Number of shots required to kill
 @export var health: int = 1:
 	set = _set_health
@@ -19,12 +21,15 @@ enum State {
 ## temporary; while dying animation does not exist
 @export var modulate_dying: Color = Color.WHITE
 
+var combat_manager: CombatManager
 var state: State = State.IDLE
-
-@onready var combat_manager: CombatManager = %CombatManager
 
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	var direction := -1 if combat_manager.player.global_position.x < global_position.x else 1
+	velocity.x = direction * SPEED
 	move_and_slide()
 
 

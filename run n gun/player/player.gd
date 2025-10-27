@@ -1,5 +1,5 @@
-extends CharacterBody2D
-## 
+class_name Player extends CharacterBody2D
+## Body with 2D platformer controls. Can run and jump. Has a gun.
 ## Founded on default character body script
 
 
@@ -20,6 +20,7 @@ var jump_state: JumpState = JumpState.new()
 
 
 func _ready() -> void:
+	combat_manager.player = self
 	touch_input_manager.jump_button_pressed.connect(jump_state.handle_jump_button_pressed)
 
 

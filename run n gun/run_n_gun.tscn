@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=26 format=3 uid="uid://bjmuq5rf6wiva"]
 
 [ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/touch controls/touch_input_manager.gd" id="1_40wwe"]
-[ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat_manager.gd" id="1_hlyqt"]
+[ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="1_xlvg8"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://run n gun/touch controls/joystick.gd" id="2_2hxpw"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="2_vev06"]
@@ -10,13 +10,20 @@
 [ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="4_6nj64"]
 [ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://run n gun/touch controls/jump_button.gd" id="4_71lap"]
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="5_wfxnc"]
-[ext_resource type="Script" uid="uid://ow3a77il1gum" path="res://run n gun/enemy.gd" id="7_jsxa7"]
+[ext_resource type="Script" uid="uid://npduyslcd0y4" path="res://run n gun/combat/enemy_spawner.gd" id="12_71lap"]
+[ext_resource type="Script" uid="uid://blwa5vgdldln3" path="res://run n gun/combat/enemy_spawnpoint.gd" id="12_xw8jl"]
 
 [sub_resource type="Gradient" id="Gradient_71lap"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xw8jl"]
 gradient = SubResource("Gradient_71lap")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_xw8jl"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oeqc0"]
+gradient = SubResource("Gradient_xw8jl")
 width = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlvg8"]
@@ -52,13 +59,6 @@ gradient = SubResource("Gradient_o1ksd")
 width = 256
 height = 15
 fill_from = Vector2(0, 1)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1ksd"]
-size = Vector2(17, 28)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1ksd"]
-radius = 9.0
-height = 28.0
 
 [sub_resource type="Gradient" id="Gradient_hlyqt"]
 offsets = PackedFloat32Array(0.256506, 0.728625)
@@ -166,6 +166,18 @@ expand_mode = 1
 unique_name_in_owner = true
 script = ExtResource("1_hlyqt")
 
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("12_71lap")
+
+[node name="EnemySpawnpoint" type="Node2D" parent="EnemySpawner"]
+position = Vector2(121, 100)
+script = ExtResource("12_xw8jl")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemySpawner/EnemySpawnpoint"]
+rotation = 0.785398
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture1D_oeqc0")
+
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, 126)
 script = ExtResource("1_xlvg8")
@@ -208,20 +220,6 @@ hit_from_inside = true
 [node name="IdleTimer" type="Timer" parent="Player/Gun"]
 process_callback = 0
 one_shot = true
-
-[node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(151, 127)
-collision_layer = 2
-script = ExtResource("7_jsxa7")
-health = 3
-modulate_hurt = Color(1, 0.294167, 0.23, 0.627451)
-modulate_dying = Color(0, 0, 0, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = SubResource("PlaceholderTexture2D_o1ksd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("CapsuleShape2D_o1ksd")
 
 [node name="Ground" type="Node2D" parent="."]
 
