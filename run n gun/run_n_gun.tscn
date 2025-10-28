@@ -1,7 +1,5 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=24 format=3 uid="uid://bjmuq5rf6wiva"]
 
-[ext_resource type="Script" uid="uid://b4es8iw3sjh83" path="res://run n gun/touch controls/touch_input_manager.gd" id="1_40wwe"]
-[ext_resource type="Script" uid="uid://iwq4cq3fgfpr" path="res://run n gun/combat/combat_manager.gd" id="1_hlyqt"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="1_xlvg8"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://run n gun/touch controls/joystick.gd" id="2_2hxpw"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="2_vev06"]
@@ -78,10 +76,6 @@ noise = SubResource("FastNoiseLite_hlyqt")
 
 [node name="RunNGun" type="Node2D"]
 texture_filter = 1
-
-[node name="TouchInputManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_40wwe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -161,10 +155,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_xw8jl")
 expand_mode = 1
-
-[node name="CombatManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("1_hlyqt")
 
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("12_71lap")

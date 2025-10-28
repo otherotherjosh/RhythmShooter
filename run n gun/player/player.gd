@@ -13,15 +13,13 @@ var look_direction: int = 1:
 
 var jump_state: JumpState = JumpState.new()
 
-@onready var touch_input_manager: TouchInputManager = %TouchInputManager
-@onready var combat_manager: CombatManager = %CombatManager
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var gun: Gun = $Gun
 
 
 func _ready() -> void:
-	combat_manager.player = self
-	touch_input_manager.jump_button_pressed.connect(jump_state.handle_jump_button_pressed)
+	CombatManager.player = self
+	TouchInputManager.jump_button_pressed.connect(jump_state.handle_jump_button_pressed)
 
 
 func _process(delta: float) -> void:
@@ -43,10 +41,10 @@ func process_jump() -> void:
 
 ## Handles movement and flips sprite when direction changes
 func process_movement_and_direction() -> void:
-	var direction := touch_input_manager.joystick_x_axis
+	var direction := TouchInputManager.joystick_x_axis
 	if direction:
 		velocity.x = direction * SPEED
-		if not combat_manager.player_is_shooting:
+		if not CombatManager.player_is_shooting:
 			look_direction = -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

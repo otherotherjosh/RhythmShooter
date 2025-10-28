@@ -17,8 +17,6 @@ var fire_direction: Vector2:
 	set = _set_fire_direction
 var tween: Tween
 
-@onready var touch_input_manager: TouchInputManager = %TouchInputManager
-@onready var combat_manager: CombatManager = %CombatManager
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var laser_beam: GunLaserBeam = $LaserBeam
@@ -26,15 +24,15 @@ var tween: Tween
 
 
 func _ready() -> void:
-	touch_input_manager.screen_touch_pressed.connect(_on_screen_touch_pressed)
-	touch_input_manager.screen_touch_released.connect(_on_screen_touch_released)
+	TouchInputManager.screen_touch_pressed.connect(_on_screen_touch_pressed)
+	TouchInputManager.screen_touch_released.connect(_on_screen_touch_released)
 	reset_tween()
 
 
 func _process(_delta: float) -> void:
 	# lock on to enemy when firing at one
-	if state == State.FIRING and combat_manager.enemy_aimed_at:
-		aim_at(combat_manager.enemy_aimed_at.global_position)
+	if state == State.FIRING and CombatManager.enemy_aimed_at:
+		aim_at(CombatManager.enemy_aimed_at.global_position)
 
 
 ## Fires the laser beam and sends a signal through Combat Manager
@@ -43,7 +41,7 @@ func start_shooting() -> void:
 		return
 	state = State.FIRING
 	laser_beam.start_shooting()
-	combat_manager.player_start_shooting()
+	CombatManager.player_start_shooting()
 	if not idle_timer.is_stopped():
 		idle_timer.stop()
 
@@ -53,7 +51,7 @@ func start_shooting() -> void:
 func stop_shooting() -> void:
 	state = State.AIMING
 	laser_beam.stop_shooting()
-	combat_manager.player_stop_shooting()
+	CombatManager.player_stop_shooting()
 	idle_timer.start()
 
 

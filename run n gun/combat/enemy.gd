@@ -21,14 +21,13 @@ const SPEED := 100
 ## temporary; while dying animation does not exist
 @export var modulate_dying: Color = Color.WHITE
 
-var combat_manager: CombatManager
 var state: State = State.IDLE
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	var direction := -1 if combat_manager.player.global_position.x < global_position.x else 1
+	var direction := -1 if CombatManager.player.global_position.x < global_position.x else 1
 	velocity.x = direction * SPEED
 	move_and_slide()
 

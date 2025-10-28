@@ -5,7 +5,6 @@ extends Node
 ## Enemy base prefab
 const ENEMY = preload("res://run n gun/combat/enemy.tscn")
 
-@onready var combat_manager: CombatManager = %CombatManager
 ## temporary: while external calling of spawn_enemy does not exist
 @onready var enemy_spawnpoint: EnemySpawnpoint = $EnemySpawnpoint
 
@@ -21,6 +20,5 @@ func _ready() -> void:
 func spawn_enemy(health: int, spawnpoint: EnemySpawnpoint):
 	var enemy: Enemy = ENEMY.instantiate()
 	enemy.health = health
-	enemy.combat_manager = combat_manager
 	enemy.global_position = spawnpoint.global_position
 	add_child(enemy)
