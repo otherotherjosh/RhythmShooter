@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds2jv73a1jhpp"]
+
+[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
+[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="1_ugwg4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbu2n"]
+shader = ExtResource("1_qknbc")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/scale = 1.0
+
+[sub_resource type="Gradient" id="Gradient_2e44y"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hwwq6"]
+gradient = SubResource("Gradient_2e44y")
+width = 1
+
+[node name="Beatmap" type="Node2D"]
+texture_filter = 1
+
+[node name="BeatTargetCircle" type="Sprite2D" parent="."]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_xbu2n")
+position = Vector2(160, 90)
+scale = Vector2(320, 320)
+texture = SubResource("GradientTexture1D_hwwq6")
+script = ExtResource("1_ugwg4")
