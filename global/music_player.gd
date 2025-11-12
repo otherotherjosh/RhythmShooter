@@ -13,11 +13,13 @@ var seek: float:
 var pulse: float
 ## Time since engine started when track will begin playing
 var track_begin_time_ms: int
+var output_latency: float
 
 
 func _ready() -> void:
 	game_track_player = AudioStreamPlayer.new()
 	add_child(game_track_player)
+	output_latency = AudioServer.get_output_latency()
 
 
 func queue_game_track(count_in: int) -> void:
@@ -49,6 +51,6 @@ func _set_game_track(value: AudioStreamOggVorbis) -> void:
 
 
 func _get_seek() -> float:
-	return (game_track_player.get_playback_position() 
+	return (game_track_player.get_playback_position()
 			+ AudioServer.get_time_since_last_mix()
-			- AudioServer.get_output_latency())
+			- output_latency)
