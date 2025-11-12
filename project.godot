@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-TouchInputManager="*res://run n gun/touch controls/touch_input_manager.gd"
-CombatManager="*res://run n gun/combat/combat_manager.gd"
+TouchInputManager="*res://global/touch_input_manager.gd"
+CombatManager="*res://global/combat_manager.gd"
+BeatmapPlayer="*res://global/beatmap_player.gd"
+MusicPlayer="*res://global/music_player.gd"
 
 [display]
 
