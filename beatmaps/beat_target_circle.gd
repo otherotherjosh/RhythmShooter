@@ -2,39 +2,76 @@ extends Sprite2D
 
 
 const TEST_DELAY = 0.5
+const ANTICIPATE_TIME_MS = 2000
 
-var circles: Array[Sprite2D]
+var next_beat_target: int
 
 
-func _ready() -> void: # TEST
-	while true:
-		add_circle()
-		await get_tree().create_timer(TEST_DELAY).timeout
+func _ready() -> void:
+	BeatmapPlayer.on_queue.connect(_on_beatmap_player_queue)
 
 
 func _process(delta: float) -> void:
-	for circle in circles:
-		var c_shader := circle.material as ShaderMaterial
-		var c_scale: float = c_shader.get_shader_parameter("scale")
-		if c_scale >= 2:
-			circles.pop_front()
-			circle.queue_free()
-			continue
-		c_scale += delta * 0.5
-		c_shader.set_shader_parameter("scale", c_scale)
+	if next_beat_target >= BeatmapPlayer.beat_targets.size(): return
+	if BeatmapPlayer.time_to_target(next_beat_target) <= ANTICIPATE_TIME_MS:
+		add_circle(next_beat_target)
+		next_beat_target += 1
 
 
-func add_circle() -> void:
-	var circle := Sprite2D.new()
+func add_circle(target_index: int) -> void:
+	var shader_material := ShaderMaterial.new()
+	shader_material.shader = material.shader
+	var target := BeatmapPlayer.beat_targets[target_index]
+	var color := BeatmapPlayer.beatmap.colors[target.color]
+	shader_material.set_shader_parameter("color", Vector3(color.r, color.g, color.b))
+	
+	var circle := Circle.new(target_index, shader_material)
 	add_child(circle)
+	
 	circle.texture = texture
 	circle.scale = Vector2.ONE
 	circle.show_behind_parent = true
-	circle.material = ShaderMaterial.new()
 	circle.position = Vector2.ZERO
-	var c_shader := circle.material as ShaderMaterial
-	c_shader.shader = material.shader
-	c_shader.set_shader_parameter("scale", 0)
-	var color := Vector3(randf(), randf(), randf())
-	c_shader.set_shader_parameter("color", color)
-	circles.append(circle)
+
+
+func _on_beatmap_player_queue() -> void:
+	next_beat_target = 0
+
+
+class Circle extends Sprite2D:
+	
+	signal completed
+	
+	const FALLOUT_SPEED := 0.75
+	
+	var target_index: int
+	var start_time: int
+	var projected_time: int
+	var shader_material: ShaderMaterial
+	
+	
+	func _init(_target_index: int, _shader_material: ShaderMaterial) -> void:
+		target_index = _target_index
+		shader_material = _shader_material
+		material = shader_material
+	
+	
+	func _ready() -> void:
+		start_time = Time.get_ticks_msec()
+		projected_time = BeatmapPlayer.time_of_target(target_index)
+		shader_material.set_shader_parameter("scale", 0)
+	
+	
+	func _process(delta: float) -> void:
+		var time := Time.get_ticks_msec()
+		var c_scale: float
+		if projected_time > time:
+			c_scale = inverse_lerp(start_time, projected_time, time)
+		else:
+			c_scale = shader_material.get_shader_parameter("scale")
+			c_scale += delta * FALLOUT_SPEED
+		shader_material.set_shader_parameter("scale", c_scale)
+		if c_scale >= 2:
+			completed.emit()
+			queue_free()
+			return

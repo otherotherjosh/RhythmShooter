@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec3 color = vec3(1);
-uniform float scale = 1;
+uniform float scale = 0;
 
 const float TARGET_RADIUS = 0.2;
 const float TARGET_WIDTH = 0.004;
