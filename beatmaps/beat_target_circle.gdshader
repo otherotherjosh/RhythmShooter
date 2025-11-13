@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform vec3 color = vec3(1);
 uniform float scale = 0;
+uniform float glow_multiplier = 1;
 
 const float TARGET_RADIUS = 0.2;
 const float TARGET_WIDTH = 0.004;
@@ -23,6 +24,7 @@ vec4 draw_circle(float uv_center_distance, float radius, float width) {
 
 vec4 draw_circle_glow(float uv_center_distance, float radius) {
 	float glow_strength = GLOW_STRENGTH - abs(radius - uv_center_distance) / GLOW_FALLOFF;
+	glow_strength *= glow_multiplier;
 	return vec4(color, pow(glow_strength, 5));
 }
 

@@ -452,6 +452,7 @@ metadata/_custom_type_script = "uid://dvpkn3biig6tx"
 shader = ExtResource("1_qknbc")
 shader_parameter/color = Vector3(1, 1, 1)
 shader_parameter/scale = 1.0
+shader_parameter/glow_multiplier = 1.0
 
 [sub_resource type="Gradient" id="Gradient_2e44y"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)

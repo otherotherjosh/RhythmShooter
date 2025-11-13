@@ -4,6 +4,8 @@ extends Node
 
 signal on_queue
 signal on_play
+signal on_beat
+signal on_target
 
 ## How long a BeatTarget is active and can be hit
 const TARGET_ACTIVE_WINDOW := 0.3
@@ -13,28 +15,31 @@ var beatmap: Beatmap:
 var bpm := 120.0:
 	set = _set_bpm
 var pulse_ms := 500
-var seek: float
-var current_beat: int:
-	get: return floori(seek)
-var current_measure: float:
-	get: return seek - current_beat
+var current_beat: float:
+	set = _set_current_beat
 var is_playing: bool
 ## Targets from the active beatmap
 var beat_targets: Array[BeatTarget]
-# Index of target that is either first ready or last active
+## Index of last active target
 var current_target: int
 
 
 func _process(delta: float) -> void:
 	if not is_playing:
 		return
-	seek = MusicPlayer.seek / MusicPlayer.pulse
+	current_beat = MusicPlayer.seek / MusicPlayer.pulse
+	
+	if current_target >= beat_targets.size(): return
+	var target := beat_targets[current_target]
+	print("beat: %s, target %s: %s" % [current_beat, current_target, target.beat + target.measure])
+	if current_beat >= target.beat + target.measure:
+		current_target += 1
+		on_target.emit()
 
 
 ## Begins playing through the active beatmap
 func play_beatmap() -> void:
 	current_beat = 0
-	current_measure = 0
 	current_target = 0
 	is_playing = true
 	on_play.emit()
@@ -75,3 +80,9 @@ func _set_beatmap(value: Beatmap) -> void:
 func _set_bpm(value: float) -> void:
 	bpm = value
 	pulse_ms = 60000 / bpm
+
+
+func _set_current_beat(value: float) -> void:
+	if floor(current_beat) < floor(value):
+		on_beat.emit()
+	current_beat = value

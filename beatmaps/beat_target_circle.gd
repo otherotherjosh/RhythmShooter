@@ -3,15 +3,24 @@ extends Sprite2D
 
 const TEST_DELAY = 0.5
 const ANTICIPATE_TIME_MS = 2000
+const GLOW_MULTIPLIER_ON_TARGET = 1.3
+const GLOW_MULTIPLIER_LERP_SPEED = 6
 
 var next_beat_target: int
+var glow_multiplier: float
+var shader_material: ShaderMaterial
 
 
 func _ready() -> void:
 	BeatmapPlayer.on_queue.connect(_on_beatmap_player_queue)
+	BeatmapPlayer.on_target.connect(_on_beatmap_player_target)
+	shader_material = material
 
 
 func _process(delta: float) -> void:
+	shader_material.set_shader_parameter("glow_multiplier", glow_multiplier)
+	glow_multiplier = lerpf(glow_multiplier, 1, delta * GLOW_MULTIPLIER_LERP_SPEED)
+	
 	if next_beat_target >= BeatmapPlayer.beat_targets.size(): return
 	if BeatmapPlayer.time_to_target(next_beat_target) <= ANTICIPATE_TIME_MS:
 		add_circle(next_beat_target)
@@ -38,9 +47,12 @@ func _on_beatmap_player_queue() -> void:
 	next_beat_target = 0
 
 
+func _on_beatmap_player_target() -> void:
+	glow_multiplier = GLOW_MULTIPLIER_ON_TARGET
+	print("target")
+
+
 class Circle extends Sprite2D:
-	
-	signal completed
 	
 	const FALLOUT_SPEED := 0.75
 	
@@ -72,6 +84,5 @@ class Circle extends Sprite2D:
 			c_scale += delta * FALLOUT_SPEED
 		shader_material.set_shader_parameter("scale", c_scale)
 		if c_scale >= 2:
-			completed.emit()
 			queue_free()
 			return
