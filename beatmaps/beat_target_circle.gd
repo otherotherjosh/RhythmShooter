@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 const TEST_DELAY = 0.5
-const ANTICIPATE_TIME_MS = 2000
+const ANTICIPATE_TIME = 2.0
 const GLOW_MULTIPLIER_ON_TARGET = 1.3
 const GLOW_MULTIPLIER_LERP_SPEED = 6
 
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	glow_multiplier = lerpf(glow_multiplier, 1, delta * GLOW_MULTIPLIER_LERP_SPEED)
 	
 	if next_beat_target >= BeatmapPlayer.beat_targets.size(): return
-	if BeatmapPlayer.time_to_target(next_beat_target) <= ANTICIPATE_TIME_MS:
+	if BeatmapPlayer.time_to_target(next_beat_target) <= ANTICIPATE_TIME:
 		add_circle(next_beat_target)
 		next_beat_target += 1
 
@@ -49,7 +49,6 @@ func _on_beatmap_player_queue() -> void:
 
 func _on_beatmap_player_target() -> void:
 	glow_multiplier = GLOW_MULTIPLIER_ON_TARGET
-	print("target")
 
 
 class Circle extends Sprite2D:
@@ -57,9 +56,9 @@ class Circle extends Sprite2D:
 	const FALLOUT_SPEED := 0.75
 	
 	var target_index: int
-	var start_time: int
-	var projected_time: int
 	var shader_material: ShaderMaterial
+	var start_time: float
+	var projected_time: float
 	
 	
 	func _init(_target_index: int, _shader_material: ShaderMaterial) -> void:
@@ -69,14 +68,15 @@ class Circle extends Sprite2D:
 	
 	
 	func _ready() -> void:
-		start_time = Time.get_ticks_msec()
+		start_time = MusicPlayer.seek
 		projected_time = BeatmapPlayer.time_of_target(target_index)
 		shader_material.set_shader_parameter("scale", 0)
 	
 	
 	func _process(delta: float) -> void:
-		var time := Time.get_ticks_msec()
+		var time := MusicPlayer.seek
 		var c_scale: float
+		# check seek vs projected seek
 		if projected_time > time:
 			c_scale = inverse_lerp(start_time, projected_time, time)
 		else:

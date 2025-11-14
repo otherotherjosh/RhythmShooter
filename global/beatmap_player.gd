@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 	
 	if current_target >= beat_targets.size(): return
 	var target := beat_targets[current_target]
-	print("beat: %s, target %s: %s" % [current_beat, current_target, target.beat + target.measure])
 	if current_beat >= target.beat + target.measure:
 		current_target += 1
 		on_target.emit()
@@ -53,16 +52,16 @@ func queue_beatmap() -> void:
 	play_beatmap()
 
 
-## Calculates when (in ms) the beat and measure of a target will occur
-func time_of_target(index: int) -> int:
+## Calculates when (in seconds from when the track started) the beat and measure of a target will occur
+func time_of_target(index: int) -> float:
 	var beat := beat_targets[index].beat
 	var measure := beat_targets[index].measure
-	return MusicPlayer.track_begin_time_ms + (beat + measure) * pulse_ms
+	return (beat + measure) * MusicPlayer.pulse
 
 
-## Calculates how much time (in ms) until the beat and measure of a target occurs
-func time_to_target(index: int) -> int:
-	return time_of_target(index) - Time.get_ticks_msec()
+## Calculates how much time (in seconds) until the beat and measure of a target occurs
+func time_to_target(index: int) -> float:
+	return time_of_target(index) - MusicPlayer.seek
 
 
 func _set_beatmap(value: Beatmap) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://ds2jv73a1jhpp"]
+[gd_scene load_steps=76 format=3 uid="uid://ds2jv73a1jhpp"]
 
 [ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
 [ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="1_ugwg4"]
@@ -441,10 +441,31 @@ measure = 0.0
 color = 2
 metadata/_custom_type_script = "uid://qtr15ividq0g"
 
+[sub_resource type="Resource" id="Resource_ui6f0"]
+script = ExtResource("3_x6wld")
+beat = 42
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_btr4s"]
+script = ExtResource("3_x6wld")
+beat = 58
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xluex"]
+script = ExtResource("3_x6wld")
+beat = 63
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
 [sub_resource type="Resource" id="Resource_dynk1"]
 script = ExtResource("2_wihiy")
 track = ExtResource("4_xu3cp")
-targets = Array[ExtResource("3_x6wld")]([SubResource("Resource_wihiy"), SubResource("Resource_x6wld"), SubResource("Resource_xu3cp"), SubResource("Resource_1hm6q"), SubResource("Resource_8jmg5"), SubResource("Resource_7ylof"), SubResource("Resource_kucwe"), SubResource("Resource_8ln2q"), SubResource("Resource_4j2md"), SubResource("Resource_t2le2"), SubResource("Resource_bydnb"), SubResource("Resource_m21yc"), SubResource("Resource_wkdmh"), SubResource("Resource_q3o2i"), SubResource("Resource_uqwng"), SubResource("Resource_frjmb"), SubResource("Resource_h2ber"), SubResource("Resource_w53f3"), SubResource("Resource_fti46"), SubResource("Resource_n7xps"), SubResource("Resource_rdfuo"), SubResource("Resource_s8vdx"), SubResource("Resource_1jrpb"), SubResource("Resource_r7cl8"), SubResource("Resource_ho88i"), SubResource("Resource_ojx4p"), SubResource("Resource_mt34g"), SubResource("Resource_iff7e"), SubResource("Resource_35k24"), SubResource("Resource_xkmll"), SubResource("Resource_xxumm"), SubResource("Resource_vh7mw"), SubResource("Resource_d1c3i"), SubResource("Resource_i62up"), SubResource("Resource_xo5vh"), SubResource("Resource_gqy6n"), SubResource("Resource_7fpyb"), SubResource("Resource_f7qmd"), SubResource("Resource_nl3kd"), SubResource("Resource_33shq"), SubResource("Resource_0agj3"), SubResource("Resource_j5sfl"), SubResource("Resource_41dsh"), SubResource("Resource_dun1u"), SubResource("Resource_rqjn1"), SubResource("Resource_s0ef8"), SubResource("Resource_s2krk"), SubResource("Resource_lfwyt"), SubResource("Resource_kgyil"), SubResource("Resource_as2hy"), SubResource("Resource_g04o2"), SubResource("Resource_1vr8u"), SubResource("Resource_wu2cg"), SubResource("Resource_q34ge"), SubResource("Resource_l1jg1"), SubResource("Resource_x5e2v"), SubResource("Resource_jnjrs"), SubResource("Resource_o5dgg"), SubResource("Resource_lk03i"), SubResource("Resource_gc5m8"), SubResource("Resource_2gg0a"), SubResource("Resource_c5e7m")])
+targets = Array[ExtResource("3_x6wld")]([SubResource("Resource_wihiy"), SubResource("Resource_x6wld"), SubResource("Resource_xu3cp"), SubResource("Resource_1hm6q"), SubResource("Resource_8jmg5"), SubResource("Resource_7ylof"), SubResource("Resource_kucwe"), SubResource("Resource_8ln2q"), SubResource("Resource_4j2md"), SubResource("Resource_t2le2"), SubResource("Resource_bydnb"), SubResource("Resource_m21yc"), SubResource("Resource_wkdmh"), SubResource("Resource_q3o2i"), SubResource("Resource_uqwng"), SubResource("Resource_frjmb"), SubResource("Resource_h2ber"), SubResource("Resource_w53f3"), SubResource("Resource_fti46"), SubResource("Resource_n7xps"), SubResource("Resource_rdfuo"), SubResource("Resource_s8vdx"), SubResource("Resource_1jrpb"), SubResource("Resource_r7cl8"), SubResource("Resource_ho88i"), SubResource("Resource_ojx4p"), SubResource("Resource_mt34g"), SubResource("Resource_iff7e"), SubResource("Resource_35k24"), SubResource("Resource_xkmll"), SubResource("Resource_xxumm"), SubResource("Resource_vh7mw"), SubResource("Resource_d1c3i"), SubResource("Resource_i62up"), SubResource("Resource_xo5vh"), SubResource("Resource_gqy6n"), SubResource("Resource_7fpyb"), SubResource("Resource_f7qmd"), SubResource("Resource_nl3kd"), SubResource("Resource_33shq"), SubResource("Resource_0agj3"), SubResource("Resource_j5sfl"), SubResource("Resource_41dsh"), SubResource("Resource_dun1u"), SubResource("Resource_rqjn1"), SubResource("Resource_s0ef8"), SubResource("Resource_s2krk"), SubResource("Resource_lfwyt"), SubResource("Resource_kgyil"), SubResource("Resource_as2hy"), SubResource("Resource_g04o2"), SubResource("Resource_1vr8u"), SubResource("Resource_wu2cg"), SubResource("Resource_q34ge"), SubResource("Resource_l1jg1"), SubResource("Resource_x5e2v"), SubResource("Resource_jnjrs"), SubResource("Resource_o5dgg"), SubResource("Resource_lk03i"), SubResource("Resource_gc5m8"), SubResource("Resource_2gg0a"), SubResource("Resource_c5e7m"), SubResource("Resource_ui6f0"), SubResource("Resource_btr4s"), SubResource("Resource_xluex")])
 colors = Array[Color]([Color(1, 0.5, 0, 1), Color(0, 0.766667, 1, 1), Color(1, 0, 0.416667, 1)])
 metadata/_custom_type_script = "uid://dvpkn3biig6tx"
 
