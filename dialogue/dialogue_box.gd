@@ -7,6 +7,7 @@ var dialogue_script: DialogueScript
 var line: int
 var skip_pressed: bool
 
+@onready var sprite: TextureRect = $HBoxContainer/Sprite
 @onready var text: RichTextLabel = $HBoxContainer/Text
 
 
@@ -21,13 +22,14 @@ func play_dialogue() -> void:
 	visible = true
 	line = 0
 	while line < dialogue_script.lines.size():
-		await play_dialogue_line()
+		await play_dialogue_line(dialogue_script.lines[line])
 		line += 1
 	visible = false
 
 
-func play_dialogue_line() -> void:
-	text.text = dialogue_script.lines[line].text
+func play_dialogue_line(line: Dialogue) -> void:
+	sprite.texture = line.character_sprite
+	text.text = line.text
 	text.visible_ratio = 0
 	# run text
 	while text.visible_ratio < 1:

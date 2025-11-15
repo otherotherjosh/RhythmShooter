@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_uhulx"]
 script = ExtResource("2_fs4ya")
 character = 1
-emotion = 0
+emotion = 1
 text = "How's it going there, player?"
 metadata/_custom_type_script = "uid://1d2ascelhlvp"
 
