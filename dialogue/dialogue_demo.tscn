@@ -1,12 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://dghc3nnkvblxv"]
+[gd_scene load_steps=13 format=3 uid="uid://dghc3nnkvblxv"]
 
 [ext_resource type="Texture2D" uid="uid://sd2dg32cy3n3" path="res://dialogue/sprites/dialogue_box.png" id="1_betk2"]
 [ext_resource type="Script" uid="uid://h46niy0m5ocd" path="res://dialogue/dialogue_demo.gd" id="1_yehy3"]
+[ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://dialogue/dialogue.gd" id="2_fs4ya"]
 [ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://dialogue/font/dialogue_text_theme.tres" id="2_jve0f"]
+[ext_resource type="Script" uid="uid://dpgob7rxahkoi" path="res://dialogue/dialogue_script.gd" id="3_ygcrb"]
+[ext_resource type="Script" uid="uid://c3nuglw2oglmv" path="res://dialogue/dialogue_box.gd" id="5_uhulx"]
+
+[sub_resource type="Resource" id="Resource_uhulx"]
+script = ExtResource("2_fs4ya")
+character = 1
+emotion = 0
+text = "How's it going there, player?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_wtd3c"]
+script = ExtResource("2_fs4ya")
+character = 0
+emotion = 0
+text = "Not too bad, how about yourself?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_5n4cd"]
+script = ExtResource("2_fs4ya")
+character = 1
+emotion = 0
+text = "Eh. Could be better."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_fo4cy"]
+script = ExtResource("2_fs4ya")
+character = 1
+emotion = 0
+text = "Sure would be nice if the world wasn't ending in 5 days, innit?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_shk8i"]
+script = ExtResource("2_fs4ya")
+character = 0
+emotion = 0
+text = "Yeah, I feel ya there, chief. Pretty stinky if I do say so myself."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_rylip"]
+script = ExtResource("3_ygcrb")
+lines = Array[ExtResource("2_fs4ya")]([SubResource("Resource_uhulx"), SubResource("Resource_wtd3c"), SubResource("Resource_5n4cd"), SubResource("Resource_fo4cy"), SubResource("Resource_shk8i")])
+timing = 0
+metadata/_custom_type_script = "uid://dpgob7rxahkoi"
 
 [node name="DialogueDemo" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_yehy3")
+dialogue_script = SubResource("Resource_rylip")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -25,6 +70,7 @@ patch_margin_left = 7
 patch_margin_top = 5
 patch_margin_right = 7
 patch_margin_bottom = 7
+script = ExtResource("5_uhulx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox"]
 layout_mode = 1
@@ -44,7 +90,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DialogueBox/HBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/DialogueBox/HBoxContainer"]
 custom_minimum_size = Vector2(199, 30)
 layout_mode = 2
 size_flags_horizontal = 4
