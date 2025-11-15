@@ -39,6 +39,8 @@ func _process(_delta: float) -> void:
 func start_shooting() -> void:
 	if state == State.FIRING:
 		return
+	if not BeatmapPlayer.attempt_hit_target():
+		return
 	state = State.FIRING
 	laser_beam.start_shooting()
 	CombatManager.player_start_shooting()

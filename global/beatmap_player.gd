@@ -47,6 +47,8 @@ func play_beatmap() -> void:
 	current_target = 0
 	ready_target = 0
 	on_play.emit()
+	await MusicPlayer.game_track_player.finished
+	stop_beatmap()
 
 
 ## Get beatmap ready to play
@@ -56,6 +58,11 @@ func queue_beatmap() -> void:
 	MusicPlayer.queue_game_track(4)
 	await MusicPlayer.on_play
 	play_beatmap()
+
+
+# End playback of beatmap
+func stop_beatmap() -> void:
+	state = State.IDLE
 
 
 func process_current_target() -> void:
@@ -74,7 +81,6 @@ func calculate_target_states() -> void:
 	# miss target
 	if time_to_target(ready_target) < -TARGET_ACTIVE_WINDOW / 2.0:
 		targets[ready_target].state = BeatTarget.State.MISSED
-		print("missed target %s" % ready_target)
 		ready_target += 1
 		return
 	# target is ready!
@@ -89,7 +95,7 @@ func hit_target() -> void:
 
 ## Hits the ready target if it is ready
 func attempt_hit_target() -> bool:
-	if state == State.IDLE: 
+	if state == State.IDLE or ready_target >= targets.size(): 
 		return false
 	var success := targets[ready_target].state == BeatTarget.State.READY
 	if success: hit_target()
