@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://ds2jv73a1jhpp"]
+[gd_scene load_steps=77 format=3 uid="uid://ds2jv73a1jhpp"]
 
 [ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
 [ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="1_ugwg4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dvpkn3biig6tx" path="res://beatmaps/beatmap.gd" id="2_wihiy"]
 [ext_resource type="Script" uid="uid://qtr15ividq0g" path="res://beatmaps/beat_target.gd" id="3_x6wld"]
 [ext_resource type="AudioStream" uid="uid://c1yi13qdkjl5" path="res://songs/shoot fred v251110.ogg" id="4_xu3cp"]
+[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://beatmaps/metronome.ogg" id="7_x6wld"]
 
 [sub_resource type="Resource" id="Resource_wihiy"]
 script = ExtResource("3_x6wld")
@@ -494,3 +495,7 @@ position = Vector2(160, 90)
 scale = Vector2(320, 320)
 texture = SubResource("GradientTexture1D_hwwq6")
 script = ExtResource("1_ugwg4")
+
+[node name="Metronome" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x6wld")
+volume_db = -6.0
