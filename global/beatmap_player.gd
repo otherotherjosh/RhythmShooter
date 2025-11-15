@@ -17,9 +17,7 @@ const TARGET_ACTIVE_WINDOW := 0.3
 
 var beatmap: Beatmap:
 	set = _set_beatmap
-var bpm := 120.0:
-	set = _set_bpm
-var pulse_ms := 500
+var bpm := 120.0
 var current_beat: float:
 	set = _set_current_beat
 ## Targets from the active beatmap
@@ -124,11 +122,6 @@ func _set_beatmap(value: Beatmap) -> void:
 	bpm = beatmap.track.bpm if beatmap.track.bpm else 120
 	beatmap.sort_targets()
 	targets = beatmap.targets 
-
-
-func _set_bpm(value: float) -> void:
-	bpm = value
-	pulse_ms = 60000 / bpm
 
 
 func _set_current_beat(value: float) -> void:
