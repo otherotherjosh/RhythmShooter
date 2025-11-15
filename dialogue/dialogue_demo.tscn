@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dghc3nnkvblxv"]
+
+[ext_resource type="Texture2D" uid="uid://sd2dg32cy3n3" path="res://dialogue/sprites/dialogue_box.png" id="1_betk2"]
+[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://dialogue/font/dialogue_text_theme.tres" id="2_jve0f"]
+
+[node name="DialogueDemo" type="Node2D"]
+texture_filter = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" type="NinePatchRect" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_top = 12.0
+offset_right = 122.0
+offset_bottom = 52.0
+grow_horizontal = 2
+texture = ExtResource("1_betk2")
+patch_margin_left = 7
+patch_margin_top = 5
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Padding" type="Control" parent="CanvasLayer/DialogueBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DialogueBox/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DialogueBox/HBoxContainer"]
+custom_minimum_size = Vector2(199, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_jve0f")
+text = "Dialogue text wow, that's like a whole line of text! Is this enough?"
+scroll_active = false
+shortcut_keys_enabled = false
