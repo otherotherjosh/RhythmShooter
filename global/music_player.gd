@@ -23,6 +23,7 @@ func _ready() -> void:
 	output_latency = AudioServer.get_output_latency()
 
 
+## Prepares game track for playback, does a countdown if count_in is above 0
 func queue_game_track(count_in: int) -> void:
 	if not game_track:
 		push_error("Tried to queue game track which is null")
@@ -37,6 +38,7 @@ func queue_game_track(count_in: int) -> void:
 	on_play.emit()
 
 
+## Counts down at the tempo of the game track
 func do_count_in(count_in: int) -> void:
 	while count_in > 0:
 		on_count_in.emit(count_in)

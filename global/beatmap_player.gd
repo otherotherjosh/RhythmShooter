@@ -9,7 +9,6 @@ enum State {
 }
 
 signal on_queue
-signal on_play
 signal on_beat
 signal on_target
 
@@ -36,7 +35,7 @@ func _process(delta: float) -> void:
 	if state == State.IDLE:
 		return
 	current_beat = MusicPlayer.seek / MusicPlayer.pulse
-	process_current_target()
+	calculate_current_target()
 	calculate_target_states()
 
 
@@ -46,7 +45,6 @@ func play_beatmap() -> void:
 	current_beat = 0
 	current_target = 0
 	ready_target = 0
-	on_play.emit()
 	await MusicPlayer.game_track_player.finished
 	stop_beatmap()
 
@@ -60,12 +58,13 @@ func queue_beatmap() -> void:
 	play_beatmap()
 
 
-# End playback of beatmap
+## End playback of beatmap
 func stop_beatmap() -> void:
 	state = State.IDLE
 
 
-func process_current_target() -> void:
+## Determines which target is "current"
+func calculate_current_target() -> void:
 	if current_target >= targets.size(): return
 	var target := targets[current_target]
 	if current_beat >= target.beat + target.measure:
@@ -73,6 +72,7 @@ func process_current_target() -> void:
 		on_target.emit()
 
 
+## Determines the states of ready and recently missed targets
 func calculate_target_states() -> void:
 	if ready_target >= targets.size(): return
 	# wait for ready_target to be ready

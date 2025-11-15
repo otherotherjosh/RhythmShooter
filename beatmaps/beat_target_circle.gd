@@ -1,4 +1,5 @@
 extends Sprite2D
+## Provides visual feedback of a playing beatmap and the player's performance of it
 
 
 const TEST_DELAY = 0.5
@@ -27,6 +28,7 @@ func _process(delta: float) -> void:
 		next_beat_target += 1
 
 
+## Creates a new circle synced to a beat target
 func add_circle(target_index: int) -> void:
 	var shader_material := ShaderMaterial.new()
 	shader_material.shader = material.shader
@@ -51,8 +53,9 @@ func _on_beatmap_player_target() -> void:
 	glow_multiplier = GLOW_MULTIPLIER_ON_TARGET
 
 
+## Visual feedback of a beat target and the player's performance of it
 class Circle extends Sprite2D:
-	
+	## How fast the circle moves after outgrowing the main circle
 	const FALLOUT_SPEED := 0.75
 	
 	var target_index: int
