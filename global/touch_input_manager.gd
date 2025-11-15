@@ -1,4 +1,4 @@
-class_name TouchInputManager extends Node
+extends Node
 ## Touch screen input event bus and management center
 
 

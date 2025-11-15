@@ -1,4 +1,4 @@
-class_name CombatManager extends Node
+extends Node
 ## PvE event bus and management center
 
 

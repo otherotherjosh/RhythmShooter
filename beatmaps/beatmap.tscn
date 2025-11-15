@@ -1,0 +1,653 @@
+[gd_scene load_steps=96 format=3 uid="uid://ds2jv73a1jhpp"]
+
+[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
+[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="1_ugwg4"]
+[ext_resource type="Script" uid="uid://2yk8velbkke4" path="res://beatmaps/beatmap_scene.gd" id="1_xbu2n"]
+[ext_resource type="Script" uid="uid://dvpkn3biig6tx" path="res://beatmaps/beatmap.gd" id="2_wihiy"]
+[ext_resource type="Script" uid="uid://qtr15ividq0g" path="res://beatmaps/beat_target.gd" id="3_x6wld"]
+[ext_resource type="AudioStream" uid="uid://c1yi13qdkjl5" path="res://songs/shoot fred v251110.ogg" id="4_xu3cp"]
+[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://beatmaps/metronome.ogg" id="7_x6wld"]
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="8_7ylof"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/player/gun.gd" id="9_kucwe"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="10_8ln2q"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="11_4j2md"]
+[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="12_t2le2"]
+[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/player/gun_laser_beam_animation_step.gd" id="13_kucwe"]
+
+[sub_resource type="Resource" id="Resource_wihiy"]
+script = ExtResource("3_x6wld")
+beat = 0
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_x6wld"]
+script = ExtResource("3_x6wld")
+beat = 1
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xu3cp"]
+script = ExtResource("3_x6wld")
+beat = 2
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_1hm6q"]
+script = ExtResource("3_x6wld")
+beat = 3
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_8jmg5"]
+script = ExtResource("3_x6wld")
+beat = 8
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_7ylof"]
+script = ExtResource("3_x6wld")
+beat = 9
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_kucwe"]
+script = ExtResource("3_x6wld")
+beat = 10
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_8ln2q"]
+script = ExtResource("3_x6wld")
+beat = 10
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_4j2md"]
+script = ExtResource("3_x6wld")
+beat = 11
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_t2le2"]
+script = ExtResource("3_x6wld")
+beat = 16
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_bydnb"]
+script = ExtResource("3_x6wld")
+beat = 17
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_m21yc"]
+script = ExtResource("3_x6wld")
+beat = 18
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_wkdmh"]
+script = ExtResource("3_x6wld")
+beat = 19
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_q3o2i"]
+script = ExtResource("3_x6wld")
+beat = 24
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_uqwng"]
+script = ExtResource("3_x6wld")
+beat = 25
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_frjmb"]
+script = ExtResource("3_x6wld")
+beat = 26
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_h2ber"]
+script = ExtResource("3_x6wld")
+beat = 26
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_w53f3"]
+script = ExtResource("3_x6wld")
+beat = 27
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_fti46"]
+script = ExtResource("3_x6wld")
+beat = 32
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_n7xps"]
+script = ExtResource("3_x6wld")
+beat = 33
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_rdfuo"]
+script = ExtResource("3_x6wld")
+beat = 34
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_s8vdx"]
+script = ExtResource("3_x6wld")
+beat = 35
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_1jrpb"]
+script = ExtResource("3_x6wld")
+beat = 36
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_r7cl8"]
+script = ExtResource("3_x6wld")
+beat = 36
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_ho88i"]
+script = ExtResource("3_x6wld")
+beat = 37
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_ojx4p"]
+script = ExtResource("3_x6wld")
+beat = 37
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_mt34g"]
+script = ExtResource("3_x6wld")
+beat = 38
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_iff7e"]
+script = ExtResource("3_x6wld")
+beat = 38
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_35k24"]
+script = ExtResource("3_x6wld")
+beat = 39
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xkmll"]
+script = ExtResource("3_x6wld")
+beat = 40
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xxumm"]
+script = ExtResource("3_x6wld")
+beat = 41
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_vh7mw"]
+script = ExtResource("3_x6wld")
+beat = 42
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_d1c3i"]
+script = ExtResource("3_x6wld")
+beat = 43
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_i62up"]
+script = ExtResource("3_x6wld")
+beat = 44
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xo5vh"]
+script = ExtResource("3_x6wld")
+beat = 44
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_gqy6n"]
+script = ExtResource("3_x6wld")
+beat = 45
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_7fpyb"]
+script = ExtResource("3_x6wld")
+beat = 45
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_f7qmd"]
+script = ExtResource("3_x6wld")
+beat = 46
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_nl3kd"]
+script = ExtResource("3_x6wld")
+beat = 46
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_33shq"]
+script = ExtResource("3_x6wld")
+beat = 47
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_0agj3"]
+script = ExtResource("3_x6wld")
+beat = 48
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_j5sfl"]
+script = ExtResource("3_x6wld")
+beat = 49
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_41dsh"]
+script = ExtResource("3_x6wld")
+beat = 50
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_dun1u"]
+script = ExtResource("3_x6wld")
+beat = 51
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_rqjn1"]
+script = ExtResource("3_x6wld")
+beat = 52
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_s0ef8"]
+script = ExtResource("3_x6wld")
+beat = 52
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_s2krk"]
+script = ExtResource("3_x6wld")
+beat = 53
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_lfwyt"]
+script = ExtResource("3_x6wld")
+beat = 53
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_kgyil"]
+script = ExtResource("3_x6wld")
+beat = 54
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_as2hy"]
+script = ExtResource("3_x6wld")
+beat = 54
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_g04o2"]
+script = ExtResource("3_x6wld")
+beat = 55
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_1vr8u"]
+script = ExtResource("3_x6wld")
+beat = 56
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_wu2cg"]
+script = ExtResource("3_x6wld")
+beat = 57
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_q34ge"]
+script = ExtResource("3_x6wld")
+beat = 58
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_l1jg1"]
+script = ExtResource("3_x6wld")
+beat = 59
+measure = 0.0
+color = 1
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_x5e2v"]
+script = ExtResource("3_x6wld")
+beat = 60
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_jnjrs"]
+script = ExtResource("3_x6wld")
+beat = 60
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_o5dgg"]
+script = ExtResource("3_x6wld")
+beat = 61
+measure = 0.0
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_lk03i"]
+script = ExtResource("3_x6wld")
+beat = 61
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_gc5m8"]
+script = ExtResource("3_x6wld")
+beat = 62
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_2gg0a"]
+script = ExtResource("3_x6wld")
+beat = 62
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_c5e7m"]
+script = ExtResource("3_x6wld")
+beat = 63
+measure = 0.0
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_ui6f0"]
+script = ExtResource("3_x6wld")
+beat = 42
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_btr4s"]
+script = ExtResource("3_x6wld")
+beat = 58
+measure = 0.5
+color = 0
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_xluex"]
+script = ExtResource("3_x6wld")
+beat = 63
+measure = 0.5
+color = 2
+metadata/_custom_type_script = "uid://qtr15ividq0g"
+
+[sub_resource type="Resource" id="Resource_dynk1"]
+script = ExtResource("2_wihiy")
+track = ExtResource("4_xu3cp")
+targets = Array[ExtResource("3_x6wld")]([SubResource("Resource_wihiy"), SubResource("Resource_x6wld"), SubResource("Resource_xu3cp"), SubResource("Resource_1hm6q"), SubResource("Resource_8jmg5"), SubResource("Resource_7ylof"), SubResource("Resource_kucwe"), SubResource("Resource_8ln2q"), SubResource("Resource_4j2md"), SubResource("Resource_t2le2"), SubResource("Resource_bydnb"), SubResource("Resource_m21yc"), SubResource("Resource_wkdmh"), SubResource("Resource_q3o2i"), SubResource("Resource_uqwng"), SubResource("Resource_frjmb"), SubResource("Resource_h2ber"), SubResource("Resource_w53f3"), SubResource("Resource_fti46"), SubResource("Resource_n7xps"), SubResource("Resource_rdfuo"), SubResource("Resource_s8vdx"), SubResource("Resource_1jrpb"), SubResource("Resource_r7cl8"), SubResource("Resource_ho88i"), SubResource("Resource_ojx4p"), SubResource("Resource_mt34g"), SubResource("Resource_iff7e"), SubResource("Resource_35k24"), SubResource("Resource_xkmll"), SubResource("Resource_xxumm"), SubResource("Resource_vh7mw"), SubResource("Resource_d1c3i"), SubResource("Resource_i62up"), SubResource("Resource_xo5vh"), SubResource("Resource_gqy6n"), SubResource("Resource_7fpyb"), SubResource("Resource_f7qmd"), SubResource("Resource_nl3kd"), SubResource("Resource_33shq"), SubResource("Resource_0agj3"), SubResource("Resource_j5sfl"), SubResource("Resource_41dsh"), SubResource("Resource_dun1u"), SubResource("Resource_rqjn1"), SubResource("Resource_s0ef8"), SubResource("Resource_s2krk"), SubResource("Resource_lfwyt"), SubResource("Resource_kgyil"), SubResource("Resource_as2hy"), SubResource("Resource_g04o2"), SubResource("Resource_1vr8u"), SubResource("Resource_wu2cg"), SubResource("Resource_q34ge"), SubResource("Resource_l1jg1"), SubResource("Resource_x5e2v"), SubResource("Resource_jnjrs"), SubResource("Resource_o5dgg"), SubResource("Resource_lk03i"), SubResource("Resource_gc5m8"), SubResource("Resource_2gg0a"), SubResource("Resource_c5e7m"), SubResource("Resource_ui6f0"), SubResource("Resource_btr4s"), SubResource("Resource_xluex")])
+colors = Array[Color]([Color(1, 0.5, 0, 1), Color(0, 0.766667, 1, 1), Color(1, 0, 0.416667, 1)])
+metadata/_custom_type_script = "uid://dvpkn3biig6tx"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbu2n"]
+shader = ExtResource("1_qknbc")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/scale = 1.0
+shader_parameter/glow_multiplier = 1.0
+
+[sub_resource type="Gradient" id="Gradient_2e44y"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hwwq6"]
+gradient = SubResource("Gradient_2e44y")
+width = 1
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bydnb"]
+size = Vector2(16, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m21yc"]
+radius = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkdmh"]
+shader = ExtResource("11_4j2md")
+shader_parameter/random_seed = 0
+shader_parameter/width = 9.0
+shader_parameter/falloff = 25.0
+shader_parameter/waves = 44.06
+shader_parameter/wave_height = 0.02
+shader_parameter/wave_speed = 55.855
+shader_parameter/waves_2 = 69.005
+shader_parameter/wave_2_height = 0.03
+shader_parameter/wave_2_speed = 67.995
+shader_parameter/waves_3 = 90.835
+shader_parameter/wave_3_speed = 72.475
+shader_parameter/wave_3_height = 0.05
+shader_parameter/start_zone = 0.03
+shader_parameter/start_scale = 0.2
+shader_parameter/length = 1.0
+
+[sub_resource type="Gradient" id="Gradient_o1ksd"]
+offsets = PackedFloat32Array(0.130597, 0.309702, 0.488806, 0.664179)
+colors = PackedColorArray(0.2, 0.8, 1, 1, 0.713333, 0.57, 1, 1, 1, 0.41, 0.980333, 1, 1, 0.664333, 0.62, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q3o2i"]
+gradient = SubResource("Gradient_o1ksd")
+width = 256
+height = 15
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Resource" id="Resource_pv6y8"]
+script = ExtResource("13_kucwe")
+width = 1.5
+wave_height = 0.1
+start_zone = 0.0
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_8p2bc"]
+script = ExtResource("13_kucwe")
+width = 10.0
+wave_height = 0.05
+start_zone = 0.01
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_p7si3"]
+script = ExtResource("13_kucwe")
+width = 9.0
+wave_height = 0.05
+start_zone = 0.03
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_ux6jy"]
+script = ExtResource("13_kucwe")
+width = 8.0
+wave_height = 0.02
+start_zone = 0.05
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Gradient" id="Gradient_hlyqt"]
+offsets = PackedFloat32Array(0.256506, 0.728625)
+colors = PackedColorArray(0.236915, 0.0535453, 0.231621, 1, 0.699029, 0.33709, 0.502949, 1)
+metadata/_snap_count = 19
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hlyqt"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uqwng"]
+width = 1024
+height = 128
+color_ramp = SubResource("Gradient_hlyqt")
+noise = SubResource("FastNoiseLite_hlyqt")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_frjmb"]
+
+[node name="Beatmap" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_xbu2n")
+beatmap = SubResource("Resource_dynk1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BeatTargetCircle" type="Sprite2D" parent="CanvasLayer"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_xbu2n")
+position = Vector2(160, 90)
+scale = Vector2(320, 320)
+texture = SubResource("GradientTexture1D_hwwq6")
+script = ExtResource("1_ugwg4")
+
+[node name="Metronome" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x6wld")
+volume_db = -6.0
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 126)
+script = ExtResource("8_7ylof")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_bottom = 180
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("PlaceholderTexture2D_bydnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_m21yc")
+
+[node name="Gun" type="Node2D" parent="Player"]
+position = Vector2(5, 0)
+script = ExtResource("9_kucwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Gun"]
+position = Vector2(11, -1.23978e-05)
+texture = ExtResource("10_8ln2q")
+
+[node name="LaserBeam" type="Sprite2D" parent="Player/Gun"]
+material = SubResource("ShaderMaterial_wkdmh")
+position = Vector2(22, -0.695724)
+scale = Vector2(1, 1.12753)
+texture = SubResource("GradientTexture2D_q3o2i")
+centered = false
+offset = Vector2(0, -7.365)
+script = ExtResource("12_t2le2")
+animation_frames = Array[ExtResource("13_kucwe")]([SubResource("Resource_pv6y8"), SubResource("Resource_8p2bc"), SubResource("Resource_p7si3"), SubResource("Resource_ux6jy")])
+
+[node name="FrameTimer" type="Timer" parent="Player/Gun/LaserBeam"]
+wait_time = 0.05
+
+[node name="RayCast2D" type="RayCast2D" parent="Player/Gun/LaserBeam"]
+target_position = Vector2(256, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="IdleTimer" type="Timer" parent="Player/Gun"]
+process_callback = 0
+one_shot = true
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Ground"]
+repeat_size = Vector2(512, 0)
+repeat_times = 999
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Parallax2D"]
+position = Vector2(0, 161)
+scale = Vector2(0.5, 0.3125)
+texture = SubResource("NoiseTexture2D_uqwng")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+position = Vector2(0, 141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_frjmb")
+
+[connection signal="fire_direction_changed" from="Player/Gun" to="Player" method="_on_gun_fire_direction_changed"]
+[connection signal="timeout" from="Player/Gun/IdleTimer" to="Player/Gun" method="_on_idle_timer_timeout"]

@@ -15,7 +15,6 @@ var state: State
 ## Beam shader with parameters, e.g. width and wave_height
 var shader: ShaderMaterial
 
-@onready var combat_manager: CombatManager = %CombatManager
 @onready var frame_timer: Timer = $FrameTimer
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
@@ -63,16 +62,16 @@ func check_ray_cast_collision() -> void:
 		aim_at_ray_cast_collision(collider)
 		beam_length_to_collision()
 	else:
-		combat_manager.enemy_aimed_at = null
+		CombatManager.enemy_aimed_at = null
 		shader.set_shader_parameter("length", 1)
 
 
 ## Checks if collider beam is hitting belongs to an enemy
 func aim_at_ray_cast_collision(collider: Object) -> void: 
 	if collider is Enemy:
-		combat_manager.enemy_aimed_at = collider
+		CombatManager.enemy_aimed_at = collider
 	else:
-		combat_manager.enemy_aimed_at = null
+		CombatManager.enemy_aimed_at = null
 
 
 ## Sets the beam length to not overshoot collision

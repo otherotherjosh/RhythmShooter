@@ -9,11 +9,10 @@ var stick_position: Vector2:
 
 @onready var stick: TextureRect = $Stick
 @onready var border: TextureRect = $Border
-@onready var touch_input_manager: TouchInputManager = %TouchInputManager
 
 
 func _process(_delta: float) -> void:
-	touch_input_manager.joystick_x_axis = stick_position.x / (border.size.x / 2)
+	TouchInputManager.joystick_x_axis = stick_position.x / (border.size.x / 2)
 
 
 func _on_gui_input(event: InputEvent) -> void:
