@@ -12,15 +12,18 @@ var skip_pressed: bool
 
 func _ready() -> void:
 	TouchInputManager.screen_touch_pressed.connect(_on_screen_touch_pressed)
+	visible = false
 
 
 func play_dialogue() -> void:
 	if not dialogue_script:
 		return
+	visible = true
 	line = 0
 	while line < dialogue_script.lines.size():
 		await play_dialogue_line()
 		line += 1
+	visible = false
 
 
 func play_dialogue_line() -> void:
