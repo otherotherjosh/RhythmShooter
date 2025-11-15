@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dghc3nnkvblxv"]
+[gd_scene load_steps=11 format=3 uid="uid://dghc3nnkvblxv"]
 
-[ext_resource type="Texture2D" uid="uid://sd2dg32cy3n3" path="res://dialogue/sprites/dialogue_box.png" id="1_betk2"]
 [ext_resource type="Script" uid="uid://h46niy0m5ocd" path="res://dialogue/dialogue_demo.gd" id="1_yehy3"]
 [ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://dialogue/dialogue.gd" id="2_fs4ya"]
-[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://dialogue/font/dialogue_text_theme.tres" id="2_jve0f"]
 [ext_resource type="Script" uid="uid://dpgob7rxahkoi" path="res://dialogue/dialogue_script.gd" id="3_ygcrb"]
-[ext_resource type="Script" uid="uid://c3nuglw2oglmv" path="res://dialogue/dialogue_box.gd" id="5_uhulx"]
+[ext_resource type="PackedScene" uid="uid://b0pt67r425c48" path="res://dialogue/dialogue_box.tscn" id="4_fs4ya"]
 
 [sub_resource type="Resource" id="Resource_uhulx"]
 script = ExtResource("2_fs4ya")
@@ -55,47 +53,4 @@ dialogue_script = SubResource("Resource_rylip")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="DialogueBox" type="NinePatchRect" parent="CanvasLayer"]
-texture_filter = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -122.0
-offset_top = 12.0
-offset_right = 122.0
-offset_bottom = 52.0
-grow_horizontal = 2
-texture = ExtResource("1_betk2")
-patch_margin_left = 7
-patch_margin_top = 5
-patch_margin_right = 7
-patch_margin_bottom = 7
-script = ExtResource("5_uhulx")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 5
-
-[node name="Padding" type="Control" parent="CanvasLayer/DialogueBox/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DialogueBox/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Text" type="RichTextLabel" parent="CanvasLayer/DialogueBox/HBoxContainer"]
-custom_minimum_size = Vector2(199, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("2_jve0f")
-text = "Dialogue text wow, that's like a whole line of text! Is this enough?"
-scroll_active = false
-shortcut_keys_enabled = false
+[node name="DialogueBox" parent="CanvasLayer" instance=ExtResource("4_fs4ya")]
