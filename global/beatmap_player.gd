@@ -100,7 +100,8 @@ func attempt_hit_target() -> bool:
 	return success
 
 
-## Calculates when (in seconds from when the track started) the beat and measure of a target will occur
+## Calculates when (in seconds from when the track started) 
+## the beat and measure of a target will occur
 func time_of_target(index: int) -> float:
 	var beat := targets[index].beat
 	var measure := targets[index].measure
