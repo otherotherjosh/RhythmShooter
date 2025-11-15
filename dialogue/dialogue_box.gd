@@ -1,13 +1,8 @@
 class_name DialogueBox extends NinePatchRect
 
 
-enum State {
-	IDLE,
-	TYPING,
-	TYPED,
-}
+const TYPE_SPEED = 50
 
-var state: State
 var dialogue_script: DialogueScript
 var line: int
 var skip_pressed: bool
@@ -21,7 +16,6 @@ func _ready() -> void:
 
 func play_dialogue() -> void:
 	if not dialogue_script:
-		state = State.IDLE
 		return
 	line = 0
 	while line < dialogue_script.lines.size():
@@ -30,12 +24,11 @@ func play_dialogue() -> void:
 
 
 func play_dialogue_line() -> void:
-	state = State.TYPING
 	text.text = dialogue_script.lines[line].text
 	text.visible_ratio = 0
 	# run text
 	while text.visible_ratio < 1:
-		text.visible_ratio += get_process_delta_time()
+		text.visible_ratio += get_process_delta_time() * TYPE_SPEED / text.text.length()
 		if skip_pressed:
 			skip_pressed = false
 			text.visible_ratio = 1
