@@ -30,13 +30,13 @@ func _process(delta: float) -> void:
 
 ## Creates a new circle synced to a beat target
 func add_circle(target_index: int) -> void:
-	var shader_material := ShaderMaterial.new()
-	shader_material.shader = material.shader
+	var _shader_material := ShaderMaterial.new()
+	_shader_material.shader = material.shader
 	var target := BeatmapPlayer.targets[target_index]
 	var color := BeatmapPlayer.beatmap.colors[target.color]
-	shader_material.set_shader_parameter("color", Vector3(color.r, color.g, color.b))
+	_shader_material.set_shader_parameter("color", Vector3(color.r, color.g, color.b))
 	
-	var circle := Circle.new(target_index, shader_material)
+	var circle := Circle.new(target_index, _shader_material)
 	add_child(circle)
 	
 	circle.texture = texture
@@ -83,8 +83,8 @@ class Circle extends Sprite2D:
 		
 		# grow circle in anticipation of target time
 		if projected_time > time and target.state != BeatTarget.State.HIT:
-			var c_scale := inverse_lerp(start_time, projected_time, time)
-			shader_material.set_shader_parameter("scale", c_scale)
+			var _scale := inverse_lerp(start_time, projected_time, time)
+			shader_material.set_shader_parameter("scale", _scale)
 			return
 		
 		match target.state:

@@ -29,7 +29,7 @@ var ready_target: int
 var state: State
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if state == State.IDLE:
 		return
 	current_beat = MusicPlayer.seek / MusicPlayer.pulse
@@ -119,7 +119,7 @@ func _set_beatmap(value: Beatmap) -> void:
 	state = State.IDLE
 	MusicPlayer.game_track = beatmap.track
 	# 120 is arbitrary, what matters is it's not 0
-	bpm = beatmap.track.bpm if beatmap.track.bpm else 120
+	bpm = beatmap.track.bpm if beatmap.track.bpm else 120.0
 	beatmap.sort_targets()
 	targets = beatmap.targets 
 

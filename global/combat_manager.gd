@@ -4,7 +4,6 @@ extends Node
 
 signal player_started_shooting
 signal player_stopped_shooting
-signal spawn_enemy(spawnpoint: int)
 
 var enemy_aimed_at: Enemy
 var player_is_shooting: bool
