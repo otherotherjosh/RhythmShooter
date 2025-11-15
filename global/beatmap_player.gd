@@ -2,6 +2,12 @@ extends Node
 ## Plays through beatmaps, globally accessible
 
 
+enum State {
+	IDLE,
+	QUEUED,
+	PLAYING,
+}
+
 signal on_queue
 signal on_play
 signal on_beat
@@ -17,45 +23,83 @@ var bpm := 120.0:
 var pulse_ms := 500
 var current_beat: float:
 	set = _set_current_beat
-var is_playing: bool
 ## Targets from the active beatmap
-var beat_targets: Array[BeatTarget]
-## Index of last active target
+var targets: Array[BeatTarget]
+## Index of current target
 var current_target: int
+## Index of first ready target
+var ready_target: int
+var state: State
 
 
 func _process(delta: float) -> void:
-	if not is_playing:
+	if state == State.IDLE:
 		return
 	current_beat = MusicPlayer.seek / MusicPlayer.pulse
-	
-	if current_target >= beat_targets.size(): return
-	var target := beat_targets[current_target]
-	if current_beat >= target.beat + target.measure:
-		current_target += 1
-		on_target.emit()
+	process_current_target()
+	calculate_target_states()
 
 
 ## Begins playing through the active beatmap
 func play_beatmap() -> void:
+	state = State.PLAYING
 	current_beat = 0
 	current_target = 0
-	is_playing = true
+	ready_target = 0
 	on_play.emit()
 
 
 ## Get beatmap ready to play
 func queue_beatmap() -> void:
+	state = State.QUEUED
 	on_queue.emit()
 	MusicPlayer.queue_game_track(4)
 	await MusicPlayer.on_play
 	play_beatmap()
 
 
+func process_current_target() -> void:
+	if current_target >= targets.size(): return
+	var target := targets[current_target]
+	if current_beat >= target.beat + target.measure:
+		current_target += 1
+		on_target.emit()
+
+
+func calculate_target_states() -> void:
+	if ready_target >= targets.size(): return
+	# wait for ready_target to be ready
+	if time_to_target(ready_target) > TARGET_ACTIVE_WINDOW / 2.0:
+		return
+	# miss target
+	if time_to_target(ready_target) < -TARGET_ACTIVE_WINDOW / 2.0:
+		targets[ready_target].state = BeatTarget.State.MISSED
+		print("missed target %s" % ready_target)
+		ready_target += 1
+		return
+	# target is ready!
+	targets[ready_target].state = BeatTarget.State.READY
+
+
+## Hits the ready target
+func hit_target() -> void:
+	targets[ready_target].state = BeatTarget.State.HIT
+	ready_target += 1
+
+
+## Hits the ready target if it is ready
+func attempt_hit_target() -> bool:
+	if state == State.IDLE: 
+		return false
+	var success := targets[ready_target].state == BeatTarget.State.READY
+	if success: hit_target()
+	return success
+
+
 ## Calculates when (in seconds from when the track started) the beat and measure of a target will occur
 func time_of_target(index: int) -> float:
-	var beat := beat_targets[index].beat
-	var measure := beat_targets[index].measure
+	var beat := targets[index].beat
+	var measure := targets[index].measure
 	return (beat + measure) * MusicPlayer.pulse
 
 
@@ -68,12 +112,12 @@ func _set_beatmap(value: Beatmap) -> void:
 	if beatmap == value:
 		return
 	beatmap = value
-	is_playing = false
+	state = State.IDLE
 	MusicPlayer.game_track = beatmap.track
 	# 120 is arbitrary, what matters is it's not 0
 	bpm = beatmap.track.bpm if beatmap.track.bpm else 120
 	beatmap.sort_targets()
-	beat_targets = beatmap.targets 
+	targets = beatmap.targets 
 
 
 func _set_bpm(value: float) -> void:

@@ -29,6 +29,10 @@ window/size/viewport_height=180
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Default"

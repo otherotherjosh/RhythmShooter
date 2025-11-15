@@ -3,7 +3,7 @@ class_name BeatTarget extends Resource
 
 
 enum State {
-	INACTIVE,
+	IDLE,
 	READY,
 	HIT,
 	MISSED,
@@ -16,4 +16,4 @@ enum State {
 ## Color to show on beat target circle
 @export var color: int
 
-var state: State = State.INACTIVE
+var state: State = State.IDLE
