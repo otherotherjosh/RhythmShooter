@@ -1,4 +1,4 @@
-class_name DialogueScript extends Resource
+class_name DialogueScript extends GameplayEvent
 
 
 enum Timing {

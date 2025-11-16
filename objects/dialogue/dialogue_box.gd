@@ -25,6 +25,7 @@ func play_dialogue() -> void:
 		await play_dialogue_line(dialogue_script.lines[line])
 		line += 1
 	visible = false
+	dialogue_script.complete.emit()
 
 
 func play_dialogue_line(line: Dialogue) -> void:

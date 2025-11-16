@@ -1,4 +1,4 @@
-class_name Beatmap extends Resource
+class_name Beatmap extends GameplayEvent
 ## Collection of beat targets to play in sync with an audio track
 
 

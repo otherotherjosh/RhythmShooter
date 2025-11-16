@@ -11,7 +11,7 @@ enum Emotion {
 	HAPPY,
 }
 
-const SPRITE_PATH = "res://dialogue/sprites/characters"
+const SPRITE_PATH = "res://objects/dialogue/sprites/characters"
 
 @export var character: Character
 @export var emotion: Emotion
