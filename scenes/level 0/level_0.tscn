@@ -1,21 +1,32 @@
-[gd_scene load_steps=27 format=3 uid="uid://bunc11gay4111"]
+[gd_scene load_steps=32 format=3 uid="uid://bunc11gay4111"]
 
-[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
+[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://objects/beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
 [ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level 0/level_0.gd" id="1_wsynf"]
-[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="2_wsynf"]
-[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://beatmaps/metronome.ogg" id="3_lt07b"]
-[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="4_qrop8"]
-[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/player/gun.gd" id="5_frnse"]
-[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="6_ei05y"]
-[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="7_e7ute"]
-[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
-[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
+[ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://objects/run n gun/touch controls/joystick.gd" id="2_frnse"]
+[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://objects/beatmaps/beat_target_circle.gd" id="2_wsynf"]
+[ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://objects/run n gun/touch controls/joystick_outer.png" id="3_ei05y"]
+[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://objects/beatmaps/metronome.ogg" id="3_lt07b"]
+[ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://objects/run n gun/touch controls/jump_button.gd" id="4_e7ute"]
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="4_qrop8"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://objects/run n gun/player/gun.gd" id="5_frnse"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://objects/run n gun/player/gun.png" id="6_ei05y"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://objects/run n gun/player/laser_beam.gdshader" id="7_e7ute"]
+[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
+[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://objects/run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
+
+[sub_resource type="Gradient" id="Gradient_71lap"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sgldt"]
+gradient = SubResource("Gradient_71lap")
+width = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vd6s"]
 shader = ExtResource("1_q6pay")
 shader_parameter/color = Vector3(1, 1, 1)
 shader_parameter/scale = 1.0
 shader_parameter/glow_multiplier = 1.0
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Gradient" id="Gradient_2e44y"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
@@ -103,16 +114,96 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gjce4"]
 
 [node name="Level0" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_wsynf")
 events = Array[Resource]([null])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="BeatTargetCircle" type="Sprite2D" parent="CanvasLayer"]
+[node name="TouchControls" type="Control" parent="UI"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Joystick" type="Control" parent="UI/TouchControls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -56.0
+offset_right = 67.0
+grow_vertical = 0
+script = ExtResource("2_frnse")
+
+[node name="Stick" type="TextureRect" parent="UI/TouchControls/Joystick"]
+modulate = Color(1, 1, 1, 0.760784)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = -21.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(7, 7)
+texture = ExtResource("3_ei05y")
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="UI/TouchControls/Joystick"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ei05y")
+
+[node name="JumpButton" type="Control" parent="UI/TouchControls"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -42.0
+offset_right = -18.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_e7ute")
+
+[node name="TextureRect" type="TextureRect" parent="UI/TouchControls/JumpButton"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_sgldt")
+expand_mode = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+
+[node name="BeatTargetCircle" type="Sprite2D" parent="Parallax2D"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_6vd6s")
-position = Vector2(160, 90)
+position = Vector2(0, 82)
 scale = Vector2(320, 320)
 texture = SubResource("GradientTexture1D_0txri")
 script = ExtResource("2_wsynf")
@@ -183,5 +274,7 @@ position = Vector2(0, 141)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_gjce4")
 
+[connection signal="gui_input" from="UI/TouchControls/Joystick" to="UI/TouchControls/Joystick" method="_on_gui_input"]
+[connection signal="gui_input" from="UI/TouchControls/JumpButton" to="UI/TouchControls/JumpButton" method="_on_gui_input"]
 [connection signal="fire_direction_changed" from="Player/Gun" to="Player" method="_on_gun_fire_direction_changed"]
 [connection signal="timeout" from="Player/Gun/IdleTimer" to="Player/Gun" method="_on_idle_timer_timeout"]
