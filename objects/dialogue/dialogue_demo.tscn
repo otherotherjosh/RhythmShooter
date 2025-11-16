@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dghc3nnkvblxv"]
 
-[ext_resource type="Script" uid="uid://h46niy0m5ocd" path="res://dialogue/dialogue_demo.gd" id="1_yehy3"]
-[ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://dialogue/dialogue.gd" id="2_fs4ya"]
-[ext_resource type="Script" uid="uid://dpgob7rxahkoi" path="res://dialogue/dialogue_script.gd" id="3_ygcrb"]
-[ext_resource type="PackedScene" uid="uid://b0pt67r425c48" path="res://dialogue/dialogue_box.tscn" id="4_fs4ya"]
+[ext_resource type="Script" uid="uid://h46niy0m5ocd" path="res://objects/dialogue/dialogue_demo.gd" id="1_yehy3"]
+[ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://objects/dialogue/dialogue.gd" id="2_fs4ya"]
+[ext_resource type="Script" uid="uid://dpgob7rxahkoi" path="res://objects/dialogue/dialogue_script.gd" id="3_ygcrb"]
+[ext_resource type="PackedScene" uid="uid://b0pt67r425c48" path="res://objects/dialogue/dialogue_box.tscn" id="4_fs4ya"]
 
 [sub_resource type="Resource" id="Resource_uhulx"]
 script = ExtResource("2_fs4ya")

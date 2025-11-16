@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://wvg7hbhe2urw"
-path="res://.godot/imported/Ac437_Apricot_200L.ttf-7f2bb2dc7089d4e6de305dc61eca1de8.fontdata"
+path="res://.godot/imported/Ac437_Apricot_200L.ttf-61cac86b9c96dd86f69b2ffb4947b5f5.fontdata"
 
 [deps]
 
-source_file="res://dialogue/font/Ac437_Apricot_200L.ttf"
-dest_files=["res://.godot/imported/Ac437_Apricot_200L.ttf-7f2bb2dc7089d4e6de305dc61eca1de8.fontdata"]
+source_file="res://objects/dialogue/font/Ac437_Apricot_200L.ttf"
+dest_files=["res://.godot/imported/Ac437_Apricot_200L.ttf-61cac86b9c96dd86f69b2ffb4947b5f5.fontdata"]
 
 [params]
 

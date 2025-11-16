@@ -1,18 +1,18 @@
 [gd_scene load_steps=96 format=3 uid="uid://ds2jv73a1jhpp"]
 
-[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
-[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="1_ugwg4"]
-[ext_resource type="Script" uid="uid://2yk8velbkke4" path="res://beatmaps/beatmap_scene.gd" id="1_xbu2n"]
-[ext_resource type="Script" uid="uid://dvpkn3biig6tx" path="res://beatmaps/beatmap.gd" id="2_wihiy"]
-[ext_resource type="Script" uid="uid://qtr15ividq0g" path="res://beatmaps/beat_target.gd" id="3_x6wld"]
+[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://objects/beatmaps/beat_target_circle.gdshader" id="1_qknbc"]
+[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://objects/beatmaps/beat_target_circle.gd" id="1_ugwg4"]
+[ext_resource type="Script" uid="uid://2yk8velbkke4" path="res://objects/beatmaps/beatmap_scene.gd" id="1_xbu2n"]
+[ext_resource type="Script" uid="uid://dvpkn3biig6tx" path="res://objects/beatmaps/beatmap.gd" id="2_wihiy"]
+[ext_resource type="Script" uid="uid://qtr15ividq0g" path="res://objects/beatmaps/beat_target.gd" id="3_x6wld"]
 [ext_resource type="AudioStream" uid="uid://c1yi13qdkjl5" path="res://songs/shoot fred v251110.ogg" id="4_xu3cp"]
-[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://beatmaps/metronome.ogg" id="7_x6wld"]
-[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="8_7ylof"]
-[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/player/gun.gd" id="9_kucwe"]
-[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="10_8ln2q"]
-[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="11_4j2md"]
-[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="12_t2le2"]
-[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/player/gun_laser_beam_animation_step.gd" id="13_kucwe"]
+[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://objects/beatmaps/metronome.ogg" id="7_x6wld"]
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="8_7ylof"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://objects/run n gun/player/gun.gd" id="9_kucwe"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://objects/run n gun/player/gun.png" id="10_8ln2q"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://objects/run n gun/player/laser_beam.gdshader" id="11_4j2md"]
+[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="12_t2le2"]
+[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://objects/run n gun/player/gun_laser_beam_animation_step.gd" id="13_kucwe"]
 
 [sub_resource type="Resource" id="Resource_wihiy"]
 script = ExtResource("3_x6wld")
@@ -481,6 +481,7 @@ shader = ExtResource("1_qknbc")
 shader_parameter/color = Vector3(1, 1, 1)
 shader_parameter/scale = 1.0
 shader_parameter/glow_multiplier = 1.0
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Gradient" id="Gradient_2e44y"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)

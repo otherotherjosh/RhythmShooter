@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://baewaw0lv5rm3"]
 
-[ext_resource type="FontFile" uid="uid://wvg7hbhe2urw" path="res://dialogue/font/Ac437_Apricot_200L.ttf" id="1_cpbvs"]
+[ext_resource type="FontFile" uid="uid://wvg7hbhe2urw" path="res://objects/dialogue/font/Ac437_Apricot_200L.ttf" id="1_cpbvs"]
 
 [resource]
 default_font = ExtResource("1_cpbvs")

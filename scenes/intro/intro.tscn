@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhpskw4psdrdx"]
 
 [ext_resource type="Script" uid="uid://77md00a6om35" path="res://scenes/intro/intro_scene.gd" id="1_qeukb"]
-[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://dialogue/font/dialogue_text_theme.tres" id="2_iatiw"]
+[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://objects/dialogue/font/dialogue_text_theme.tres" id="2_iatiw"]
 
 [node name="Intro" type="Node2D" node_paths=PackedStringArray("labels")]
 script = ExtResource("1_qeukb")

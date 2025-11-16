@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2kxh24gnhrs"
-path="res://.godot/imported/Q_NEUTRAL.png-83aa16e7e1d9622fefb1b6b06e709a9b.ctex"
+uid="uid://leh4xwbo372l"
+path="res://.godot/imported/joystick_outer.png-76d23bd0bf480a33def1b4cb37d8e85c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/sprites/characters/Q_NEUTRAL.png"
-dest_files=["res://.godot/imported/Q_NEUTRAL.png-83aa16e7e1d9622fefb1b6b06e709a9b.ctex"]
+source_file="res://objects/run n gun/touch controls/joystick_outer.png"
+dest_files=["res://.godot/imported/joystick_outer.png-76d23bd0bf480a33def1b4cb37d8e85c.ctex"]
 
 [params]
 

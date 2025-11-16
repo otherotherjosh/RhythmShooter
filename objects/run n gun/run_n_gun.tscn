@@ -1,21 +1,21 @@
 [gd_scene load_steps=24 format=3 uid="uid://bjmuq5rf6wiva"]
 
-[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="1_xlvg8"]
-[ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://run n gun/touch controls/joystick.gd" id="2_2hxpw"]
-[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="2_vev06"]
-[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/player/gun.gd" id="2_vkshs"]
-[ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://run n gun/touch controls/joystick_outer.png" id="3_xtvmq"]
-[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="4_6nj64"]
-[ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://run n gun/touch controls/jump_button.gd" id="4_71lap"]
-[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="5_wfxnc"]
-[ext_resource type="Script" uid="uid://npduyslcd0y4" path="res://run n gun/combat/enemy_spawner.gd" id="12_71lap"]
-[ext_resource type="Script" uid="uid://blwa5vgdldln3" path="res://run n gun/combat/enemy_spawnpoint.gd" id="12_xw8jl"]
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="1_xlvg8"]
+[ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://objects/run n gun/touch controls/joystick.gd" id="2_2hxpw"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://objects/run n gun/player/gun.png" id="2_vev06"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://objects/run n gun/player/gun.gd" id="2_vkshs"]
+[ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://objects/run n gun/touch controls/joystick_outer.png" id="3_xtvmq"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://objects/run n gun/player/laser_beam.gdshader" id="4_6nj64"]
+[ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://objects/run n gun/touch controls/jump_button.gd" id="4_71lap"]
+[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="5_wfxnc"]
+[ext_resource type="Script" uid="uid://npduyslcd0y4" path="res://objects/run n gun/combat/enemy_spawner.gd" id="12_71lap"]
+[ext_resource type="Script" uid="uid://blwa5vgdldln3" path="res://objects/run n gun/combat/enemy_spawnpoint.gd" id="12_xw8jl"]
 
-[sub_resource type="Gradient" id="Gradient_71lap"]
+[sub_resource type="Gradient" id="Gradient_w0mb0"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xw8jl"]
-gradient = SubResource("Gradient_71lap")
+gradient = SubResource("Gradient_w0mb0")
 width = 1
 
 [sub_resource type="Gradient" id="Gradient_xw8jl"]

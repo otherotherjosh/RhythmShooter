@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0pt67r425c48"]
 
-[ext_resource type="Texture2D" uid="uid://sd2dg32cy3n3" path="res://dialogue/sprites/dialogue_box.png" id="1_dcftc"]
-[ext_resource type="Script" uid="uid://c3nuglw2oglmv" path="res://dialogue/dialogue_box.gd" id="2_dtg6m"]
-[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://dialogue/font/dialogue_text_theme.tres" id="3_fabun"]
+[ext_resource type="Texture2D" uid="uid://sd2dg32cy3n3" path="res://objects/dialogue/sprites/dialogue_box.png" id="1_dcftc"]
+[ext_resource type="Script" uid="uid://c3nuglw2oglmv" path="res://objects/dialogue/dialogue_box.gd" id="2_dtg6m"]
+[ext_resource type="Theme" uid="uid://baewaw0lv5rm3" path="res://objects/dialogue/font/dialogue_text_theme.tres" id="3_fabun"]
 
 [node name="DialogueBox" type="NinePatchRect"]
 texture_filter = 1

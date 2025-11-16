@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name BeatTargetCircle extends Sprite2D
 ## Provides visual feedback of a playing beatmap and the player's performance of it
 
 

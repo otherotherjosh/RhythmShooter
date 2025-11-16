@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform vec3 color = vec3(1);
 uniform float scale = 0;
 uniform float glow_multiplier = 1;
+uniform float alpha = 1;
 
 const float TARGET_RADIUS = 0.2;
 const float TARGET_WIDTH = 0.004;
@@ -41,6 +42,6 @@ void fragment() {
 	}
 	COLOR = draw_circle(uv_center_distance, radius, TARGET_WIDTH);
 	COLOR += draw_circle_glow(uv_center_distance, radius);
-	COLOR.a = clamp(COLOR.a, 0, 1);
+	COLOR.a = clamp(COLOR.a, 0, 1) * alpha;
 	COLOR.a *= alpha_mult;
 }

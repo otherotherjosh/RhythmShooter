@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5hyu6hvupa47"]
 
-[ext_resource type="Script" uid="uid://ow3a77il1gum" path="res://run n gun/combat/enemy.gd" id="1_nk52e"]
+[ext_resource type="Script" uid="uid://ow3a77il1gum" path="res://objects/run n gun/combat/enemy.gd" id="1_nk52e"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o1ksd"]
 size = Vector2(17, 28)
