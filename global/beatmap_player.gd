@@ -58,6 +58,7 @@ func queue_beatmap() -> void:
 
 ## End playback of beatmap
 func stop_beatmap() -> void:
+	beatmap.complete.emit()
 	state = State.IDLE
 
 

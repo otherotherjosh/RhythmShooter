@@ -3,6 +3,7 @@ extends Node
 
 const SCENE_MENU := preload("res://scenes/menu/main_menu.tscn")
 const SCENE_INTRO := preload("res://scenes/intro/intro.tscn")
+const SCENE_LEVEL_PATH := "res://scenes/level {0}/level_{0}.tscn"
 const SAVE_DATA_PATH := "user://save_data.json"
 
 var save: Dictionary:
@@ -16,17 +17,22 @@ func _ready() -> void:
 	load_save_data()
 
 
+func load_level(level: int) -> void:
+	var path := SCENE_LEVEL_PATH.format([level])
+	if not FileAccess.file_exists(path):
+		return
+	get_tree().change_scene_to_file(path)
+
+
 func init_save_data() -> void:
 	save = {
 		"first_time" : true,
 	}
-	print("that was init")
 
 
 func load_save_data() -> void:
 	var save_file: JSON = load(SAVE_DATA_PATH)
 	save = save_file.data
-	print("loaded")
 
 
 func write_to_save(key: String, value: Variant) -> void:
