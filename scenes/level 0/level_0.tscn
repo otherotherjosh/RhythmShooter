@@ -1,0 +1,187 @@
+[gd_scene load_steps=27 format=3 uid="uid://bunc11gay4111"]
+
+[ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
+[ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level 0/level_0.gd" id="1_wsynf"]
+[ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://beatmaps/beat_target_circle.gd" id="2_wsynf"]
+[ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://beatmaps/metronome.ogg" id="3_lt07b"]
+[ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://run n gun/player/player.gd" id="4_qrop8"]
+[ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://run n gun/player/gun.gd" id="5_frnse"]
+[ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://run n gun/player/gun.png" id="6_ei05y"]
+[ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://run n gun/player/laser_beam.gdshader" id="7_e7ute"]
+[ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
+[ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vd6s"]
+shader = ExtResource("1_q6pay")
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/scale = 1.0
+shader_parameter/glow_multiplier = 1.0
+
+[sub_resource type="Gradient" id="Gradient_2e44y"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0txri"]
+gradient = SubResource("Gradient_2e44y")
+width = 1
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oolle"]
+size = Vector2(16, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0t7e"]
+radius = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cko67"]
+shader = ExtResource("7_e7ute")
+shader_parameter/random_seed = 0
+shader_parameter/width = 9.0
+shader_parameter/falloff = 25.0
+shader_parameter/waves = 44.06
+shader_parameter/wave_height = 0.02
+shader_parameter/wave_speed = 55.855
+shader_parameter/waves_2 = 69.005
+shader_parameter/wave_2_height = 0.03
+shader_parameter/wave_2_speed = 67.995
+shader_parameter/waves_3 = 90.835
+shader_parameter/wave_3_speed = 72.475
+shader_parameter/wave_3_height = 0.05
+shader_parameter/start_zone = 0.03
+shader_parameter/start_scale = 0.2
+shader_parameter/length = 1.0
+
+[sub_resource type="Gradient" id="Gradient_o1ksd"]
+offsets = PackedFloat32Array(0.130597, 0.309702, 0.488806, 0.664179)
+colors = PackedColorArray(0.2, 0.8, 1, 1, 0.713333, 0.57, 1, 1, 1, 0.41, 0.980333, 1, 1, 0.664333, 0.62, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yccai"]
+gradient = SubResource("Gradient_o1ksd")
+width = 256
+height = 15
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Resource" id="Resource_pv6y8"]
+script = ExtResource("9_fs3nx")
+width = 1.5
+wave_height = 0.1
+start_zone = 0.0
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_8p2bc"]
+script = ExtResource("9_fs3nx")
+width = 10.0
+wave_height = 0.05
+start_zone = 0.01
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_p7si3"]
+script = ExtResource("9_fs3nx")
+width = 9.0
+wave_height = 0.05
+start_zone = 0.03
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Resource" id="Resource_ux6jy"]
+script = ExtResource("9_fs3nx")
+width = 8.0
+wave_height = 0.02
+start_zone = 0.05
+metadata/_custom_type_script = "uid://cxufssf4fvxi7"
+
+[sub_resource type="Gradient" id="Gradient_hlyqt"]
+offsets = PackedFloat32Array(0.256506, 0.728625)
+colors = PackedColorArray(0.236915, 0.0535453, 0.231621, 1, 0.699029, 0.33709, 0.502949, 1)
+metadata/_snap_count = 19
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hlyqt"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_co1sm"]
+width = 1024
+height = 128
+color_ramp = SubResource("Gradient_hlyqt")
+noise = SubResource("FastNoiseLite_hlyqt")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gjce4"]
+
+[node name="Level0" type="Node2D"]
+script = ExtResource("1_wsynf")
+events = Array[Resource]([null])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BeatTargetCircle" type="Sprite2D" parent="CanvasLayer"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_6vd6s")
+position = Vector2(160, 90)
+scale = Vector2(320, 320)
+texture = SubResource("GradientTexture1D_0txri")
+script = ExtResource("2_wsynf")
+
+[node name="Metronome" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lt07b")
+volume_db = -6.0
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 126)
+script = ExtResource("4_qrop8")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_bottom = 180
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("PlaceholderTexture2D_oolle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_g0t7e")
+
+[node name="Gun" type="Node2D" parent="Player"]
+position = Vector2(5, 0)
+script = ExtResource("5_frnse")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Gun"]
+position = Vector2(11, -1.23978e-05)
+texture = ExtResource("6_ei05y")
+
+[node name="LaserBeam" type="Sprite2D" parent="Player/Gun"]
+material = SubResource("ShaderMaterial_cko67")
+position = Vector2(22, -0.695724)
+scale = Vector2(1, 1.12753)
+texture = SubResource("GradientTexture2D_yccai")
+centered = false
+offset = Vector2(0, -7.365)
+script = ExtResource("8_sgldt")
+animation_frames = Array[ExtResource("9_fs3nx")]([SubResource("Resource_pv6y8"), SubResource("Resource_8p2bc"), SubResource("Resource_p7si3"), SubResource("Resource_ux6jy")])
+
+[node name="FrameTimer" type="Timer" parent="Player/Gun/LaserBeam"]
+wait_time = 0.05
+
+[node name="RayCast2D" type="RayCast2D" parent="Player/Gun/LaserBeam"]
+target_position = Vector2(256, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="IdleTimer" type="Timer" parent="Player/Gun"]
+process_callback = 0
+one_shot = true
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Ground"]
+repeat_size = Vector2(512, 0)
+repeat_times = 999
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/Parallax2D"]
+position = Vector2(0, 161)
+scale = Vector2(0.5, 0.3125)
+texture = SubResource("NoiseTexture2D_co1sm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+position = Vector2(0, 141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_gjce4")
+
+[connection signal="fire_direction_changed" from="Player/Gun" to="Player" method="_on_gun_fire_direction_changed"]
+[connection signal="timeout" from="Player/Gun/IdleTimer" to="Player/Gun" method="_on_idle_timer_timeout"]
