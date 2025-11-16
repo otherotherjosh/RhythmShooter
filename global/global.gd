@@ -20,13 +20,11 @@ func init_save_data() -> void:
 	save = {
 		"first_time" : true,
 	}
-	print("that was init")
 
 
 func load_save_data() -> void:
 	var save_file: JSON = load(SAVE_DATA_PATH)
 	save = save_file.data
-	print("loaded")
 
 
 func write_to_save(key: String, value: Variant) -> void:
