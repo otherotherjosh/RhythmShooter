@@ -1,18 +1,151 @@
-[gd_scene load_steps=32 format=3 uid="uid://bunc11gay4111"]
+[gd_scene load_steps=55 format=3 uid="uid://bunc11gay4111"]
 
 [ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://objects/beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
 [ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level 0/level_0.gd" id="1_wsynf"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://objects/run n gun/touch controls/joystick.gd" id="2_frnse"]
+[ext_resource type="Script" uid="uid://cykv0j6mt3kxf" path="res://objects/delay_event.gd" id="2_fs3nx"]
+[ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://objects/dialogue/dialogue.gd" id="2_sgldt"]
 [ext_resource type="Script" uid="uid://hlf2e32jk0gw" path="res://objects/beatmaps/beat_target_circle.gd" id="2_wsynf"]
 [ext_resource type="Texture2D" uid="uid://leh4xwbo372l" path="res://objects/run n gun/touch controls/joystick_outer.png" id="3_ei05y"]
+[ext_resource type="Script" uid="uid://dpgob7rxahkoi" path="res://objects/dialogue/dialogue_script.gd" id="3_fs3nx"]
 [ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://objects/beatmaps/metronome.ogg" id="3_lt07b"]
 [ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://objects/run n gun/touch controls/jump_button.gd" id="4_e7ute"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="4_qrop8"]
+[ext_resource type="PackedScene" uid="uid://b0pt67r425c48" path="res://objects/dialogue/dialogue_box.tscn" id="5_ei05y"]
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://objects/run n gun/player/gun.gd" id="5_frnse"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://objects/run n gun/player/gun.png" id="6_ei05y"]
 [ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://objects/run n gun/player/laser_beam.gdshader" id="7_e7ute"]
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
 [ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://objects/run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
+
+[sub_resource type="Resource" id="Resource_oolle"]
+resource_local_to_scene = true
+script = ExtResource("2_fs3nx")
+duration = 1.0
+metadata/_custom_type_script = "uid://cykv0j6mt3kxf"
+
+[sub_resource type="Resource" id="Resource_6vd6s"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Is this thing on?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_0txri"]
+script = ExtResource("3_fs3nx")
+lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_6vd6s")])
+timing = 0
+metadata/_custom_type_script = "uid://dpgob7rxahkoi"
+
+[sub_resource type="Resource" id="Resource_fs3nx"]
+resource_local_to_scene = true
+script = ExtResource("2_fs3nx")
+duration = 1.0
+metadata/_custom_type_script = "uid://cykv0j6mt3kxf"
+
+[sub_resource type="Resource" id="Resource_cko67"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Ahem."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_co1sm"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Testing testing, 1, 2, 3"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_gjce4"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "Yes I can hear you."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_sn6xg"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Ah."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_qbbsm"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Good."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_g0t7e"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "You've been equipped with a dubstep gun for today's mission."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_o14vc"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "A *what* gun?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_8v7dv"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "A dubstep gun. "
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_6av43"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "..."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_q3p8a"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "It's neither here nor there."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_jaq2h"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "I've set up a practice zone for you!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_fwj7j"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Here, you can get used to the controls."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_dsogu"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "What are the controls?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_let4c"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Try it out!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_yccai"]
+script = ExtResource("3_fs3nx")
+lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_cko67"), SubResource("Resource_co1sm"), SubResource("Resource_gjce4"), SubResource("Resource_sn6xg"), SubResource("Resource_qbbsm"), SubResource("Resource_g0t7e"), SubResource("Resource_o14vc"), SubResource("Resource_8v7dv"), SubResource("Resource_6av43"), SubResource("Resource_q3p8a"), SubResource("Resource_jaq2h"), SubResource("Resource_fwj7j"), SubResource("Resource_dsogu"), SubResource("Resource_let4c")])
+timing = 0
+metadata/_custom_type_script = "uid://dpgob7rxahkoi"
 
 [sub_resource type="Gradient" id="Gradient_71lap"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -116,7 +249,7 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [node name="Level0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_wsynf")
-events = Array[Resource]([null])
+events = Array[Resource]([SubResource("Resource_oolle"), SubResource("Resource_0txri"), SubResource("Resource_fs3nx"), SubResource("Resource_yccai")])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -196,6 +329,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_sgldt")
 expand_mode = 1
+
+[node name="DialogueBox" parent="UI" instance=ExtResource("5_ei05y")]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
