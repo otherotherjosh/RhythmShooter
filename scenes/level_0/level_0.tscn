@@ -1,7 +1,8 @@
-[gd_scene load_steps=81 format=3 uid="uid://bunc11gay4111"]
+[gd_scene load_steps=82 format=3 uid="uid://bunc11gay4111"]
 
 [ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://objects/beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
-[ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level 0/level_0.gd" id="1_wsynf"]
+[ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level_0/level_0.gd" id="1_wsynf"]
+[ext_resource type="Script" uid="uid://b7unwsls1c101" path="res://objects/gameplay_event.gd" id="2_cko67"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://objects/run n gun/touch controls/joystick.gd" id="2_frnse"]
 [ext_resource type="Script" uid="uid://cykv0j6mt3kxf" path="res://objects/delay_event.gd" id="2_fs3nx"]
 [ext_resource type="Script" uid="uid://1d2ascelhlvp" path="res://objects/dialogue/dialogue.gd" id="2_sgldt"]
@@ -20,7 +21,7 @@
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
 [ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://objects/run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
 [ext_resource type="PackedScene" uid="uid://c5hyu6hvupa47" path="res://objects/run n gun/combat/enemy.tscn" id="19_0txri"]
-[ext_resource type="Script" uid="uid://832e8nlg15ga" path="res://scenes/level 0/dummy_enemy.gd" id="20_oolle"]
+[ext_resource type="Script" uid="uid://832e8nlg15ga" path="res://scenes/level_0/dummy_enemy.gd" id="20_oolle"]
 
 [sub_resource type="Resource" id="Resource_oolle"]
 resource_local_to_scene = true
@@ -404,7 +405,7 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [node name="Level0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_wsynf")
-events = Array[Resource]([SubResource("Resource_oolle"), SubResource("Resource_0txri"), SubResource("Resource_fs3nx"), SubResource("Resource_yccai"), SubResource("Resource_h3elu"), SubResource("Resource_n8xub"), ExtResource("6_g0t7e"), SubResource("Resource_ry501"), SubResource("Resource_7qgul")])
+events = Array[ExtResource("2_cko67")]([SubResource("Resource_oolle"), SubResource("Resource_0txri"), SubResource("Resource_fs3nx"), SubResource("Resource_yccai"), SubResource("Resource_h3elu"), SubResource("Resource_n8xub"), ExtResource("6_g0t7e"), SubResource("Resource_ry501"), SubResource("Resource_7qgul")])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
