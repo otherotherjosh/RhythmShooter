@@ -11,15 +11,40 @@ config_version=5
 [application]
 
 config/name="Rhythm Game"
-run/main_scene="uid://bw3guqit8feqh"
+run/main_scene="uid://dk4ab0wheqfiq"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://global/global.gd"
+TouchInputManager="*res://global/touch_input_manager.gd"
+CombatManager="*res://global/combat_manager.gd"
+MusicPlayer="*res://global/music_player.gd"
+BeatmapPlayer="*res://global/beatmap_player.gd"
+
 [display]
 
+window/size/viewport_width=320
+window/size/viewport_height=180
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Enemy"
+
+[physics]
+
+common/physics_ticks_per_second=30
+common/physics_interpolation=true
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
