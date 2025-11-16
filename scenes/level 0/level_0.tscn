@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bunc11gay4111"]
+[gd_scene load_steps=81 format=3 uid="uid://bunc11gay4111"]
 
 [ext_resource type="Shader" uid="uid://dhby0wglrfbcf" path="res://objects/beatmaps/beat_target_circle.gdshader" id="1_q6pay"]
 [ext_resource type="Script" uid="uid://bruyhj78bfi5y" path="res://scenes/level 0/level_0.gd" id="1_wsynf"]
@@ -11,12 +11,16 @@
 [ext_resource type="AudioStream" uid="uid://c17l5k674apyw" path="res://objects/beatmaps/metronome.ogg" id="3_lt07b"]
 [ext_resource type="Script" uid="uid://kg0r84ifo3xw" path="res://objects/run n gun/touch controls/jump_button.gd" id="4_e7ute"]
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="4_qrop8"]
+[ext_resource type="Script" uid="uid://da1yobjfjf5ha" path="res://objects/enter_zone_event.gd" id="5_6vd6s"]
 [ext_resource type="PackedScene" uid="uid://b0pt67r425c48" path="res://objects/dialogue/dialogue_box.tscn" id="5_ei05y"]
 [ext_resource type="Script" uid="uid://c3q2gwvedso8f" path="res://objects/run n gun/player/gun.gd" id="5_frnse"]
 [ext_resource type="Texture2D" uid="uid://ciswcqowsdlof" path="res://objects/run n gun/player/gun.png" id="6_ei05y"]
+[ext_resource type="Resource" uid="uid://ddftdkxhhfe0j" path="res://objects/beatmaps/demo_beatmap.tres" id="6_g0t7e"]
 [ext_resource type="Shader" uid="uid://3dgar3u7ajoj" path="res://objects/run n gun/player/laser_beam.gdshader" id="7_e7ute"]
 [ext_resource type="Script" uid="uid://caecimiap0ffe" path="res://objects/run n gun/player/gun_laser_beam.gd" id="8_sgldt"]
 [ext_resource type="Script" uid="uid://cxufssf4fvxi7" path="res://objects/run n gun/player/gun_laser_beam_animation_step.gd" id="9_fs3nx"]
+[ext_resource type="PackedScene" uid="uid://c5hyu6hvupa47" path="res://objects/run n gun/combat/enemy.tscn" id="19_0txri"]
+[ext_resource type="Script" uid="uid://832e8nlg15ga" path="res://scenes/level 0/dummy_enemy.gd" id="20_oolle"]
 
 [sub_resource type="Resource" id="Resource_oolle"]
 resource_local_to_scene = true
@@ -124,7 +128,7 @@ metadata/_custom_type_script = "uid://1d2ascelhlvp"
 script = ExtResource("2_sgldt")
 character = 1
 emotion = 0
-text = "Here, you can get used to the controls."
+text = "There, you can get used to the controls."
 metadata/_custom_type_script = "uid://1d2ascelhlvp"
 
 [sub_resource type="Resource" id="Resource_dsogu"]
@@ -141,9 +145,160 @@ emotion = 0
 text = "Try it out!"
 metadata/_custom_type_script = "uid://1d2ascelhlvp"
 
+[sub_resource type="Resource" id="Resource_cp3i1"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "It's over to your right!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
 [sub_resource type="Resource" id="Resource_yccai"]
 script = ExtResource("3_fs3nx")
-lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_cko67"), SubResource("Resource_co1sm"), SubResource("Resource_gjce4"), SubResource("Resource_sn6xg"), SubResource("Resource_qbbsm"), SubResource("Resource_g0t7e"), SubResource("Resource_o14vc"), SubResource("Resource_8v7dv"), SubResource("Resource_6av43"), SubResource("Resource_q3p8a"), SubResource("Resource_jaq2h"), SubResource("Resource_fwj7j"), SubResource("Resource_dsogu"), SubResource("Resource_let4c")])
+lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_cko67"), SubResource("Resource_co1sm"), SubResource("Resource_gjce4"), SubResource("Resource_sn6xg"), SubResource("Resource_qbbsm"), SubResource("Resource_g0t7e"), SubResource("Resource_o14vc"), SubResource("Resource_8v7dv"), SubResource("Resource_6av43"), SubResource("Resource_q3p8a"), SubResource("Resource_jaq2h"), SubResource("Resource_fwj7j"), SubResource("Resource_dsogu"), SubResource("Resource_let4c"), SubResource("Resource_cp3i1")])
+timing = 0
+metadata/_custom_type_script = "uid://dpgob7rxahkoi"
+
+[sub_resource type="Resource" id="Resource_h3elu"]
+resource_local_to_scene = true
+script = ExtResource("5_6vd6s")
+position = Vector2(430, 120)
+radius = 120.0
+metadata/_custom_type_script = "uid://da1yobjfjf5ha"
+
+[sub_resource type="Resource" id="Resource_buwv1"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Behold! A dummy!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_a60vx"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "It's a pink square."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_pl1jg"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "You're a pink square."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_iorhw"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "I'll make it look nicer in the future."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_hcumt"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Now, before you shoot it, you gotta wait for the music to begin."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_ou42y"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Then, fire in time with the beat!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_1sj8f"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Ready?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_1p3qx"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "Can I get a regular gun?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_7xnl2"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "no"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_n8xub"]
+script = ExtResource("3_fs3nx")
+lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_buwv1"), SubResource("Resource_a60vx"), SubResource("Resource_pl1jg"), SubResource("Resource_iorhw"), SubResource("Resource_hcumt"), SubResource("Resource_ou42y"), SubResource("Resource_1sj8f"), SubResource("Resource_1p3qx"), SubResource("Resource_7xnl2")])
+timing = 0
+metadata/_custom_type_script = "uid://dpgob7rxahkoi"
+
+[sub_resource type="Resource" id="Resource_ry501"]
+resource_local_to_scene = true
+script = ExtResource("2_fs3nx")
+duration = 1.0
+metadata/_custom_type_script = "uid://cykv0j6mt3kxf"
+
+[sub_resource type="Resource" id="Resource_0qial"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Wow, you're a natural!"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_ynsi0"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "...maybe."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_ujkju"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "I don't know I literally wasn't paying attention."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_vvt1e"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "So what's the mission?"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_7viit"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "It doesn't exist yet."
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_6ah1x"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "Thanks for playing the demo"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_sa0un"]
+script = ExtResource("2_sgldt")
+character = 0
+emotion = 0
+text = "what"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_tsngr"]
+script = ExtResource("2_sgldt")
+character = 1
+emotion = 0
+text = "have fun in purgatory"
+metadata/_custom_type_script = "uid://1d2ascelhlvp"
+
+[sub_resource type="Resource" id="Resource_7qgul"]
+script = ExtResource("3_fs3nx")
+lines = Array[ExtResource("2_sgldt")]([SubResource("Resource_0qial"), SubResource("Resource_ynsi0"), SubResource("Resource_ujkju"), SubResource("Resource_vvt1e"), SubResource("Resource_7viit"), SubResource("Resource_6ah1x"), SubResource("Resource_sa0un"), SubResource("Resource_tsngr")])
 timing = 0
 metadata/_custom_type_script = "uid://dpgob7rxahkoi"
 
@@ -249,7 +404,7 @@ noise = SubResource("FastNoiseLite_hlyqt")
 [node name="Level0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_wsynf")
-events = Array[Resource]([SubResource("Resource_oolle"), SubResource("Resource_0txri"), SubResource("Resource_fs3nx"), SubResource("Resource_yccai")])
+events = Array[Resource]([SubResource("Resource_oolle"), SubResource("Resource_0txri"), SubResource("Resource_fs3nx"), SubResource("Resource_yccai"), SubResource("Resource_h3elu"), SubResource("Resource_n8xub"), ExtResource("6_g0t7e"), SubResource("Resource_ry501"), SubResource("Resource_7qgul")])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -408,6 +563,11 @@ position = Vector2(0, 141)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_gjce4")
+
+[node name="Enemy" parent="." instance=ExtResource("19_0txri")]
+position = Vector2(434, 127)
+script = ExtResource("20_oolle")
+health = 9999
 
 [connection signal="gui_input" from="UI/TouchControls/Joystick" to="UI/TouchControls/Joystick" method="_on_gui_input"]
 [connection signal="gui_input" from="UI/TouchControls/JumpButton" to="UI/TouchControls/JumpButton" method="_on_gui_input"]

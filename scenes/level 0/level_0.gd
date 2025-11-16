@@ -9,14 +9,16 @@ extends Node2D
 
 func _ready() -> void:
 	beat_target_circle.global_position.x = 0
-	beat_target_circle.shader_material.set_shader_parameter("alpha", 0.3)
+	
 	for event in events:
+		beat_target_circle.shader_material.set_shader_parameter("alpha", 0.3)
 		if event is DialogueScript:
 			dialogue_box.dialogue_script = event
 			dialogue_box.play_dialogue()
 		elif event is Beatmap:
+			beat_target_circle.shader_material.set_shader_parameter("alpha", 1)
 			BeatmapPlayer.beatmap = event
 			BeatmapPlayer.queue_beatmap()
-		elif event is GameplayEventDelay:
-			event.delay()
+		else:
+			event.do_event()
 		await event.complete
