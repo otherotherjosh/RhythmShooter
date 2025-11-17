@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjmuq5rf6wiva"]
+[gd_scene load_steps=25 format=3 uid="uid://bjmuq5rf6wiva"]
 
 [ext_resource type="Script" uid="uid://cp0b06k6ou4cp" path="res://objects/run n gun/player/player.gd" id="1_xlvg8"]
 [ext_resource type="Script" uid="uid://c178mnnjqd18u" path="res://objects/run n gun/touch controls/joystick.gd" id="2_2hxpw"]
@@ -57,6 +57,10 @@ gradient = SubResource("Gradient_o1ksd")
 width = 256
 height = 15
 fill_from = Vector2(0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0mb0"]
+radius = 4.0
+height = 24.0
 
 [sub_resource type="Gradient" id="Gradient_hlyqt"]
 offsets = PackedFloat32Array(0.256506, 0.728625)
@@ -170,6 +174,7 @@ texture = SubResource("GradientTexture1D_oeqc0")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, 126)
+collision_layer = 4
 script = ExtResource("1_xlvg8")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -183,8 +188,9 @@ texture = SubResource("PlaceholderTexture2D_xlvg8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_vkshs")
 
-[node name="Gun" type="Node2D" parent="Player"]
+[node name="Gun" type="AnimatableBody2D" parent="Player"]
 position = Vector2(5, 0)
+collision_layer = 4
 script = ExtResource("2_vkshs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Gun"]
@@ -210,6 +216,11 @@ hit_from_inside = true
 [node name="IdleTimer" type="Timer" parent="Player/Gun"]
 process_callback = 0
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Gun"]
+position = Vector2(12, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w0mb0")
 
 [node name="Ground" type="Node2D" parent="."]
 
