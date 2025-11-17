@@ -3,7 +3,7 @@ extends Node
 
 
 ## Enemy base prefab
-const ENEMY = preload("res://run n gun/combat/enemy.tscn")
+const ENEMY = preload("res://objects/run n gun/combat/enemy.tscn")
 
 ## temporary: while external calling of spawn_enemy does not exist
 @onready var enemy_spawnpoint: EnemySpawnpoint = $EnemySpawnpoint
