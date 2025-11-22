@@ -188,7 +188,7 @@ texture = SubResource("PlaceholderTexture2D_xlvg8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_vkshs")
 
-[node name="Gun" type="AnimatableBody2D" parent="Player"]
+[node name="Gun" type="StaticBody2D" parent="Player"]
 position = Vector2(5, 0)
 collision_layer = 4
 script = ExtResource("2_vkshs")

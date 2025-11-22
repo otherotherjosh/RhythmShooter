@@ -1,4 +1,4 @@
-class_name Gun extends AnimatableBody2D
+class_name Gun extends StaticBody2D
 ## Aims at location of a screen tap and fires a beam in its direction
 
 
