@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	process_jump()
-	process_movement_and_direction()
+	process_movement_and_direction(delta)
 	move_and_slide()
 
 
@@ -40,7 +40,7 @@ func process_jump() -> void:
 
 
 ## Handles movement and flips sprite when direction changes
-func process_movement_and_direction() -> void:
+func process_movement_and_direction(delta: float) -> void:
 	var direction := TouchInputManager.joystick_x_axis
 	if direction:
 		velocity.x = direction * SPEED
@@ -48,6 +48,7 @@ func process_movement_and_direction() -> void:
 			look_direction = -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	gun.position = lerp(gun.position, gun.init_position * look_direction, delta * 5)
 
 
 func _set_look_direction(value: int) -> void:
@@ -56,7 +57,6 @@ func _set_look_direction(value: int) -> void:
 	look_direction = value
 	sprite_2d.scale.x = look_direction
 	gun.scale.x = look_direction
-	gun.position.x = abs(gun.position.x) * look_direction
 	if gun.state != Gun.State.FIRING:
 		gun.rotation = 0
 

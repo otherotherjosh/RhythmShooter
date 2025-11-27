@@ -16,6 +16,7 @@ var state: State:
 var fire_direction: Vector2:
 	set = _set_fire_direction
 var tween: Tween
+var init_position: Vector2
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var camera_2d: Camera2D = $"../Camera2D"
@@ -26,7 +27,7 @@ var tween: Tween
 func _ready() -> void:
 	TouchInputManager.screen_touch_pressed.connect(_on_screen_touch_pressed)
 	TouchInputManager.screen_touch_released.connect(_on_screen_touch_released)
-	reset_tween()
+	init_position = position
 
 
 func _process(_delta: float) -> void:
